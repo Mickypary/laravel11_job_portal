@@ -1,31 +1,34 @@
 <div class="main-sidebar">
   <aside id="sidebar-wrapper">
       <div class="sidebar-brand">
-          <a href="{{ route('admin_home') }}">Admin Panel</a>
+          <a href="{{ route('admin_dashboard') }}">Admin Panel</a>
       </div>
       <div class="sidebar-brand sidebar-brand-sm">
-          <a href="{{ route('admin_home') }}"></a>
+          <a href="{{ route('admin_dashboard') }}"></a>
       </div>
 
       <ul class="sidebar-menu">
 
-          <li class="active"><a class="nav-link" href="{{ route('admin_home') }}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Dashboard"><i class="fas fa-hand-point-right"></i> <span>Dashboard</span></a></li>
+          <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_dashboard') }}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Dashboard"><i class="fas fa-hand-point-right"></i> <span>Dashboard</span></a></li>
 
-          <li class="nav-item dropdown active">
-              <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Dropdown Items</span></a>
+          <li class="nav-item dropdown {{ Request::is('admin/home-page') ? 'active' : '' }}">
+              <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Page Settings</span></a>
               <ul class="dropdown-menu">
-                  <li class="active"><a class="nav-link" href=""><i class="fas fa-angle-right"></i> Item 1</a></li>
-                  <li class=""><a class="nav-link" href=""><i class="fas fa-angle-right"></i> Item 2</a></li>
+                  <li class="{{ Request::is('admin/home-page') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_home_page') }}"><i class="fas fa-angle-right"></i>Home</a></li>
+                  <li class=""><a class="nav-link" href=""><i class="fas fa-angle-right"></i>Terms</a></li>
               </ul>
           </li>
 
-          <li class=""><a class="nav-link" href="setting.html" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Setting"><i class="fas fa-hand-point-right"></i> <span>Setting</span></a></li>
+          <li class="nav-item dropdown {{ Request::is('admin/job-category/*') ? 'active' : '' }}">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Job Section</span></a>
+            <ul class="dropdown-menu">
+                <li class="{{ Request::is('admin/job-category/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_job_category') }}"><i class="fas fa-angle-right"></i>Job Category</a></li>
+                <li class=""><a class="nav-link" href=""><i class="fas fa-angle-right"></i>Job Locatiob</a></li>
+            </ul>
+        </li>
 
-          <li class=""><a class="nav-link" href="form.html" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Form"><i class="fas fa-hand-point-right"></i> <span>Form</span></a></li>
+          <li class="{{ Request::is('admin/why-choose/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_why_choose') }}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Why Choose Us"><i class="fas fa-hand-point-right"></i> <span>Why Choose Us</span></a></li>
 
-          <li class=""><a class="nav-link" href="table.html" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Table"><i class="fas fa-hand-point-right"></i> <span>Table</span></a></li>
-
-          <li class=""><a class="nav-link" href="invoice.html" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Invoice"><i class="fas fa-hand-point-right"></i> <span>Invoice</span></a></li>
 
       </ul>
   </aside>

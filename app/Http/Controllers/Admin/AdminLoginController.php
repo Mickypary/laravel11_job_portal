@@ -34,7 +34,7 @@ class AdminLoginController extends Controller
 
         if (Auth::guard('admin')->attempt($credentials)) {
             // dd($credentials);
-            return redirect()->route('admin_home')->with('info', 'Welcome back ' . Auth::guard('admin')->user()->name);
+            return redirect()->route('admin_dashboard')->with('info', 'Welcome back ' . Auth::guard('admin')->user()->name);
         } else {
             return redirect()->route('admin_login')->with('error', 'Invalid Email or password');
         }
