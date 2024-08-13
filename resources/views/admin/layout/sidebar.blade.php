@@ -27,7 +27,17 @@
             </ul>
         </li>
 
+        {{-- Why Choose Us --}}
           <li class="{{ Request::is('admin/why-choose/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_why_choose') }}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Why Choose Us"><i class="fas fa-hand-point-right"></i> <span>Why Choose Us</span></a></li>
+
+          {{-- Testimonials --}}
+          <li class="{{ Request::is('admin/testimonial/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_testimonial') }}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Testimonials"><i class="fas fa-hand-point-right"></i> <span>Testimonials</span></a></li>
+
+          {{-- Post --}}
+          <li class="{{ Request::is('admin/post/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_post') }}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Posts"><i class="fas fa-hand-point-right"></i> <span>Blog Posts</span></a></li>
+
+          {{-- FAQ --}}
+          <li class="{{ Request::is('admin/faq/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_faq') }}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="FAQs"><i class="fas fa-hand-point-right"></i> <span>FAQs</span></a></li>
 
 
       </ul>

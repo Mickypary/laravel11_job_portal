@@ -15,7 +15,7 @@
       <div class="col-12">
           <div class="card">
               <div class="card-body">
-                  <form action="{{ route('admin_why_choose_store') }}" method="post"">
+                  <form action="{{ route('admin_why_choose_store') }}" method="post">
                     @csrf
                     
                       <div class="form-group mb-3">

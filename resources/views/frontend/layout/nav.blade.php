@@ -18,7 +18,7 @@
                   id="navbarSupportedContent"
               >
                   <ul class="navbar-nav ml-auto">
-                      <li class="nav-item active">
+                      <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
                           <a href="{{ route('home') }}" class="nav-link"
                               >Home</a
                           >
@@ -33,20 +33,20 @@
                               >Companies</a
                           >
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item {{ Request::is('pricing') ? 'active' : '' }}">
                           <a href="pricing.html" class="nav-link"
                               >Pricing</a
                           >
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item {{ Request::is('faq') ? 'active' : '' }}">
                           <a href="faq.html" class="nav-link">FAQ</a>
                       </li>
-                      <li class="nav-item">
-                          <a href="blog.html" class="nav-link"
+                      <li class="nav-item {{ Request::is('blog') ? 'active' : '' }}">
+                          <a href="{{ route('blog') }}" class="nav-link"
                               >Blog</a
                           >
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item {{ Request::is('contact') ? 'active' : '' }}">
                           <a href="contact.html" class="nav-link"
                               >Contact</a
                           >

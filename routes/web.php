@@ -6,11 +6,18 @@ use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminHomePageController;
 use App\Http\Controllers\Admin\AdminJobCategoryController;
 use App\Http\Controllers\Admin\AdminWhyChooseController;
+use App\Http\Controllers\Admin\AdminTestimonialController;
+use App\Http\Controllers\Admin\AdminPostController;
+use App\Http\Controllers\Admin\AdminFaqController;
 
 
+// Frontend
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\JobCategoryController;
 use App\Http\Controllers\Frontend\TermsController;
+use App\Http\Controllers\Frontend\PostController;
+
+
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -56,6 +63,34 @@ Route::middleware(['admin:admin'])->group(function () {
   Route::get('admin/why-choose/edit/{id}', [AdminWhyChooseController::class, 'edit'])->name('admin_why_choose_edit');
   Route::post('admin/why-choose/update/{id}', [AdminWhyChooseController::class, 'update'])->name('admin_why_choose_update');
   Route::get('admin/why-choose/delete/{id}', [AdminWhyChooseController::class, 'delete'])->name('admin_why_choose_delete');
+
+
+  // Testimonials
+  Route::get('admin/testimonial/view', [AdminTestimonialController::class, 'index'])->name('admin_testimonial');
+  Route::get('admin/testimonial/add', [AdminTestimonialController::class, 'add'])->name('admin_testimonial_add');
+  Route::post('admin/testimonial/store', [AdminTestimonialController::class, 'store'])->name('admin_testimonial_store');
+  Route::get('admin/testimonial/edit/{id}', [AdminTestimonialController::class, 'edit'])->name('admin_testimonial_edit');
+  Route::post('admin/testimonial/update/{id}', [AdminTestimonialController::class, 'update'])->name('admin_testimonial_update');
+  Route::get('admin/testimonial/delete/{id}', [AdminTestimonialController::class, 'delete'])->name('admin_testimonial_delete');
+
+
+  // Post
+  Route::get('admin/post/view', [AdminPostController::class, 'index'])->name('admin_post');
+  Route::get('admin/post/add', [AdminPostController::class, 'add'])->name('admin_post_add');
+  Route::post('admin/post/store', [AdminPostController::class, 'store'])->name('admin_post_store');
+  Route::get('admin/post/edit/{id}', [AdminPostController::class, 'edit'])->name('admin_post_edit');
+  Route::post('admin/post/update/{id}', [AdminPostController::class, 'update'])->name('admin_post_update');
+  Route::get('admin/post/delete/{id}', [AdminPostController::class, 'delete'])->name('admin_post_delete');
+
+
+
+  // FAQs
+  Route::get('admin/faq/view', [AdminFaqController::class, 'index'])->name('admin_faq');
+  Route::get('admin/faq/add', [AdminFaqController::class, 'add'])->name('admin_faq_add');
+  Route::post('admin/faq/store', [AdminFaqController::class, 'store'])->name('admin_faq_store');
+  Route::get('admin/faq/edit/{id}', [AdminFaqController::class, 'edit'])->name('admin_faq_edit');
+  Route::post('admin/faq/update/{id}', [AdminFaqController::class, 'update'])->name('admin_faq_update');
+  Route::get('admin/faq/delete/{id}', [AdminFaqController::class, 'delete'])->name('admin_faq_delete');
 });
 
 // Route::get('admin/home', [AdminHomeController::class, 'index'])->name('admin_home')->middleware('admin:admin');
@@ -73,3 +108,5 @@ Route::middleware(['admin:admin'])->group(function () {
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('terms', [TermsController::class, 'index'])->name('terms');
 Route::get('job-categories', [JobCategoryController::class, 'categories'])->name('job_categories');
+Route::get('blog', [PostController::class, 'index'])->name('blog');
+Route::get('post/{slug}', [PostController::class, 'detail'])->name('post');
