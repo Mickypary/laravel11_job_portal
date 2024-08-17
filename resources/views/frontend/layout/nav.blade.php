@@ -28,7 +28,7 @@
                               Find Jobs</a
                           >
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item {{ Request::is('companies') ? 'active' : '' }}">
                           <a href="companies.html" class="nav-link"
                               >Companies</a
                           >
@@ -39,7 +39,7 @@
                           >
                       </li>
                       <li class="nav-item {{ Request::is('faq') ? 'active' : '' }}">
-                          <a href="faq.html" class="nav-link">FAQ</a>
+                          <a href="{{ route('faq') }}" class="nav-link">FAQ</a>
                       </li>
                       <li class="nav-item {{ Request::is('blog') ? 'active' : '' }}">
                           <a href="{{ route('blog') }}" class="nav-link"
@@ -47,7 +47,7 @@
                           >
                       </li>
                       <li class="nav-item {{ Request::is('contact') ? 'active' : '' }}">
-                          <a href="contact.html" class="nav-link"
+                          <a href="{{ route('contact') }}" class="nav-link"
                               >Contact</a
                           >
                       </li>

@@ -28,7 +28,7 @@ class AdminPostController extends Controller
 
         $request->validate([
             'photo' => 'required|image|mimes:jpg,jpeg,png,gif',
-            'title' => 'required',
+            'heading' => 'required',
             'slug' => 'required|alpha_dash|unique:posts',
             'short_description' => 'required',
             'description' => 'required',
@@ -49,10 +49,12 @@ class AdminPostController extends Controller
         $request->file('photo')->move(public_path('uploads/'), $final_name);
 
         $obj->photo = $final_name;
-        $obj->title = $request->title;
+        $obj->heading = $request->heading;
         $obj->slug = $request->slug;
         $obj->short_description = $request->short_description;
         $obj->description = $request->description;
+        $obj->title = $request->title;
+        $obj->meta_description = $request->meta_description;
         $obj->total_view = 0;
         $obj->save();
 
@@ -69,7 +71,7 @@ class AdminPostController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required',
+            'heading' => 'required',
             'slug' => ['required', 'alpha_dash', Rule::unique('posts')->ignore($id)],
             'short_description' => 'required',
             'description' => 'required',
@@ -94,10 +96,12 @@ class AdminPostController extends Controller
             $obj->photo = $final_name;
         }
 
-        $obj->title = $request->title;
+        $obj->heading = $request->heading;
         $obj->slug = $request->slug;
         $obj->short_description = $request->short_description;
         $obj->description = $request->description;
+        $obj->title = $request->title;
+        $obj->meta_description = $request->meta_description;
         $obj->update();
 
         return redirect()->route('admin_post')->with('success', 'Data updated successfully');

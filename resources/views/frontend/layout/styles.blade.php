@@ -10,3 +10,4 @@
         <link rel="stylesheet" href="{{ asset('dist-frontend/css/meanmenu.css') }}" />
         <link rel="stylesheet" href="{{ asset('dist-frontend/css/spacing.css') }}" />
         <link rel="stylesheet" href="{{ asset('dist-frontend/css/style.css') }}" />
+        <link rel="stylesheet" href="{{ asset('dist-frontend/css/iziToast.min.css') }}">

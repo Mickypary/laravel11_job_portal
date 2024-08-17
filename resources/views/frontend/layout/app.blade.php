@@ -2,13 +2,10 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
-        <meta name="description" content="" />
-        <title>Job Hunt</title>
+        <meta name="description" content="@yield('seo_meta_description')" />
+        <title>@yield('seo_title')</title>
 
         <link rel="icon" type="image/png" href="{{ asset('uploads/favicon.png') }}" />
 
@@ -18,10 +15,7 @@
         <!-- All Javascripts -->
         @include('frontend.layout.scripts')
 
-        <link
-            href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
-            rel="stylesheet"
-        />
+        <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     </head>
     <body>
         <div class="top">
@@ -29,8 +23,8 @@
                 <div class="row">
                     <div class="col-md-6 left-side">
                         <ul>
-                            <li class="phone-text">111-222-3333</li>
-                            <li class="email-text">contact@arefindev.com</li>
+                            <li class="phone-text">+2349062684833</li>
+                            <li class="email-text">contact@mickyparydev.com</li>
                         </ul>
                     </div>
                     <div class="col-md-6 right-side">
@@ -65,5 +59,54 @@
         </div>
 
         @include('frontend.layout.scripts_footer')
+
+
+        @if($errors->any())
+            @foreach($errors->all() as $error)
+                <script>
+                    iziToast.error({
+                    title: '',
+                    position: 'topRight',
+                    message: '{{ $error }}',
+                });
+                </script>
+            @endforeach
+        @endif
+
+
+        @if(session()->get('error'))
+            <script>
+                iziToast.error({
+                    title: '',
+                    position: 'topRight',
+                    message: '{{ session()->get('error') }}',
+                });
+            </script>
+        @endif
+
+        @if(session()->get('success'))
+            <script>
+                iziToast.success({
+                    title: '',
+                    position: 'topRight',
+                    message: '{{ session()->get('success') }}',
+                });
+            </script>
+        @endif
+
+        @if(session()->get('info'))
+            <script>
+                iziToast.info({
+                    title: '',
+                    position: 'topRight',
+                    message: '{{ session()->get('info') }}',
+                });
+            </script>
+        @endif
+
+
+
+
+
     </body>
 </html>

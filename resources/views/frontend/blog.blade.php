@@ -1,6 +1,12 @@
 @extends('frontend.layout.app')
 
+@section('seo_title')
+{{ $blog_page->title }}
+@endsection
 
+@section('seo_meta_description')
+{{ $blog_page->meta_description }}
+@endsection
 
 @section('main_content')
 
@@ -12,7 +18,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Blog</h2>
+                        <h2>{{ $blog_page->heading }}</h2>
                     </div>
                 </div>
             </div>

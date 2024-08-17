@@ -16,6 +16,14 @@ table.t1 tr td {
     border-top: 1px solid #e3e3e3;
 }
 
+h4.seo_section {
+    margin-top: 40px;
+    padding: 5px;
+    background: #ffcfcf;
+    color: #dc3545;
+    font-size: 16px;
+}
+
 .card.card-statistic-1 .card-header h4,
 .card.card-statistic-2 .card-header h4 {
     letter-spacing: normal;
@@ -478,4 +486,8 @@ hr.invoice-above-table {
 .custom-tab .nav-pills .nav-link.active {
     color: #fff !important;
     background-color: #6777ef !important;
+}
+
+.page-item.active .page-link {
+    color: #fff;
 }

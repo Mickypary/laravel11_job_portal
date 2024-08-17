@@ -11,11 +11,16 @@
 
           <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_dashboard') }}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Dashboard"><i class="fas fa-hand-point-right"></i> <span>Dashboard</span></a></li>
 
-          <li class="nav-item dropdown {{ Request::is('admin/home-page') ? 'active' : '' }}">
+          <li class="nav-item dropdown {{ (Request::is('admin/home-page') || Request::is('admin/faq-page') || Request::is('admin/blog-page') || Request::is('admin/term-page') || Request::is('admin/privacy-page') || Request::is('admin/contact-page') || Request::is('admin/job-category-page'))  ? 'active' : '' }}">
               <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Page Settings</span></a>
               <ul class="dropdown-menu">
                   <li class="{{ Request::is('admin/home-page') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_home_page') }}"><i class="fas fa-angle-right"></i>Home</a></li>
-                  <li class=""><a class="nav-link" href=""><i class="fas fa-angle-right"></i>Terms</a></li>
+                  <li class="{{ Request::is('admin/faq-page') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_faq_page') }}"><i class="fas fa-angle-right"></i>FAQ</a></li>
+                  <li class="{{ Request::is('admin/blog-page') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_blog_page') }}"><i class="fas fa-angle-right"></i>Blog</a></li>
+                  <li class="{{ Request::is('admin/term-page') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_term_page') }}"><i class="fas fa-angle-right"></i>Terms of Use</a></li>
+                  <li class="{{ Request::is('admin/privacy-page') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_privacy_page') }}"><i class="fas fa-angle-right"></i>Privacy Policy</a></li>
+                  <li class="{{ Request::is('admin/contact-page') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_contact_page') }}"><i class="fas fa-angle-right"></i>Contact</a></li>
+                  <li class="{{ Request::is('admin/job-category-page') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_job_category_page') }}"><i class="fas fa-angle-right"></i>Job Category</a></li>
               </ul>
           </li>
 
@@ -38,6 +43,9 @@
 
           {{-- FAQ --}}
           <li class="{{ Request::is('admin/faq/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_faq') }}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="FAQs"><i class="fas fa-hand-point-right"></i> <span>FAQs</span></a></li>
+
+          {{-- Package --}}
+          <li class="{{ Request::is('admin/package/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_package') }}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Packages"><i class="fas fa-hand-point-right"></i> <span>Package</span></a></li>
 
 
       </ul>

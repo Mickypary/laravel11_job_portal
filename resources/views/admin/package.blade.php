@@ -1,10 +1,10 @@
 @extends('admin.layout.app')
 
 
-@section('heading', 'Posts')
+@section('heading', 'Packages')
 @section('button')
 <div class="ms-auto">
-  <a href="{{ route('admin_post_add') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New</a>
+  <a href="{{ route('admin_package_add') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New</a>
 </div>
 @endsection
 
@@ -21,20 +21,20 @@
                           <thead>
                           <tr>
                               <th>SL</th>
-                              <th>Photo</th>
-                              <th>Heading</th>
+                              <th>Package Name</th>
+                              <th>Package Price</th>
                               <th>Action</th>
                           </tr>
                           </thead>
                           <tbody>
-                            @foreach($posts as $item)
+                            @foreach($packages as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td><img src="{{ asset('uploads/'.$item->photo) }}" alt="" class="w_150"></td>
-                                <td>{{ $item->heading }}</td>                   
+                                <td>{{ $item->package_name }}</td>
+                                <td>{{ $item->package_price }}</td>
                                 <td class="pt_10 pb_10">
-                                    <a href="{{ route('admin_post_edit', $item->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                    <a href="{{ route('admin_post_delete', $item->id) }}" class="btn btn-danger btn-sm" onClick="return confirm('Are you sure?');">Delete</a>
+                                    <a href="{{ route('admin_package_edit', $item->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    <a href="{{ route('admin_package_delete', $item->id) }}" class="btn btn-danger btn-sm" onClick="return confirm('Are you sure?');">Delete</a>
                                 </td>
                             </tr>
                           @endforeach

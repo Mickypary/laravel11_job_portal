@@ -10,3 +10,4 @@
         <script src="{{ asset('dist-frontend/js/moment.min.js') }}"></script>
         <script src="{{ asset('dist-frontend/js/jquery.meanmenu.js') }}"></script>
         <script src="{{ asset('dist-frontend/tinymce/tinymce.min.js') }}"></script>
+        <script src="{{ asset('dist-frontend/js/iziToast.min.js') }}"></script>
