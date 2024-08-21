@@ -39,6 +39,9 @@
 
                                     {{-- Blog Tab --}}
                                     <button class="nav-link" id="v-pills-6-tab" data-bs-toggle="pill" data-bs-target="#v-pills-6" type="button" role="tab" aria-controls="v-pills-6" aria-selected="false">Blog</button>
+
+                                    {{-- Home Page Metas Tab --}}
+                                    <button class="nav-link" id="v-pills-7-tab" data-bs-toggle="pill" data-bs-target="#v-pills-7" type="button" role="tab" aria-controls="v-pills-7" aria-selected="false">Home Page SEO Metas</button>
         
                                 </div>
                             </div>
@@ -279,8 +282,35 @@
                 
                                                     </div>
                         
-                                                    {{-- Job Category Section End --}}
+                                                    {{-- Blog Section End --}}
                                                     </div>
+
+
+
+
+
+                                                    <div class="tab-pane fade" id="v-pills-7" role="tabpanel" aria-labelledby="v-pills-7-tab" tabindex="0">
+                                                        {{-- Home SEO Section Start --}}
+                            
+                                                        <div class="row">
+                                    
+                                                            <div class="col-md-12">
+                                                                <div class="mb-4">
+                                                                    <label class="form-label">Title</label>
+                                                                    <input type="text" class="form-control" name="title" value="{{ $home_page_data->title }}">
+                                                                </div>
+                                                                <div class="mb-4">
+                                                                    <label class="form-label">Meta Description </label>
+                                                                    <textarea name="meta_description" class="form-control h_100" cols="30" rows="10">{{ $home_page_data->meta_description }}</textarea>
+                                                                
+                                                                </div>
+                                                                
+                                                            </div>
+                    
+                                                        </div>
+                            
+                                                        {{-- Home SEO Section End --}}
+                                                        </div>
 
 
 

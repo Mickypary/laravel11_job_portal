@@ -118,6 +118,10 @@ class AdminHomePageController extends Controller
         $home_page_data->blog_subheading = $request->blog_subheading;
         $home_page_data->blog_status = $request->blog_status;
 
+        // SEO section
+        $home_page_data->title = $request->title;
+        $home_page_data->meta_description = $request->meta_description;
+
         $home_page_data->update();
 
         return redirect()->back()->with('success', 'Data updated successfully');

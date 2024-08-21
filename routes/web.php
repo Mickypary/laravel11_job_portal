@@ -16,6 +16,8 @@ use App\Http\Controllers\Admin\AdminPrivacyPageController;
 use App\Http\Controllers\Admin\AdminContactPageController;
 use App\Http\Controllers\Admin\AdminJobCategoryPageController;
 use App\Http\Controllers\Admin\AdminPackageController;
+use App\Http\Controllers\Admin\AdminPricingPageController;
+use App\Http\Controllers\Admin\AdminOtherPageController;
 
 
 // Frontend
@@ -26,6 +28,14 @@ use App\Http\Controllers\Frontend\PostController;
 use App\Http\Controllers\Frontend\FaqController;
 use App\Http\Controllers\Frontend\PrivacyController;
 use App\Http\Controllers\Frontend\ContactController;
+use App\Http\Controllers\Frontend\PricingController;
+use App\Http\Controllers\Frontend\LoginController;
+use App\Http\Controllers\Frontend\SignupController;
+use App\Http\Controllers\Frontend\ForgetPasswordController;
+
+
+// Company
+use App\Http\Controllers\Company\CompanyController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -39,15 +49,15 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('admin/login', [AdminLoginController::class, 'index'])->name('admin_login');
-Route::post('admin/login-submit', [AdminLoginController::class, 'login__'])->name('admin_login__');
+Route::post('admin/login', [AdminLoginController::class, 'login__'])->name('admin_login__');
 Route::get('admin/logout', [AdminLoginController::class, 'logout'])->name('admin_logout');
 Route::get('admin/forget-password', [AdminLoginController::class, 'forget_password'])->name('admin_forget_password');
-Route::post('admin/forget-password-submit', [AdminLoginController::class, 'forget_password__'])->name('admin_forget_password_submit');
+Route::post('admin/forget-password', [AdminLoginController::class, 'forget_password__'])->name('admin_forget_password_submit');
 Route::get('admin/reset-password/{token}/{email}', [AdminLoginController::class, 'reset_password'])->name('admin_reset_password');
 Route::post('admin/reset-password-submit', [AdminLoginController::class, 'reset_password__'])->name('admin_reset_password_submit');
 
 
-Route::middleware(['admin:admin'])->group(function () {
+Route::middleware(['admin:admin', 'prevent-back-history'])->group(function () {
 
   // Dashboard/Profile/Homepage
   Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin_dashboard');
@@ -57,7 +67,7 @@ Route::middleware(['admin:admin'])->group(function () {
 
   // Admin Homepage
   Route::get('admin/home-page', [AdminHomePageController::class, 'index'])->name('admin_home_page');
-  Route::post('admin/home-page/update', [AdminHomePageController::class, 'update'])->name('admin_home_page_update');
+  Route::post('admin/home-page', [AdminHomePageController::class, 'update'])->name('admin_home_page_update');
 
 
   // Admin FAQ Page
@@ -89,6 +99,16 @@ Route::middleware(['admin:admin'])->group(function () {
   // Admin Job Category Page
   Route::get('admin/job-category-page', [AdminJobCategoryPageController::class, 'index'])->name('admin_job_category_page');
   Route::post('admin/job-category-page/update', [AdminJobCategoryPageController::class, 'update'])->name('admin_job_category_page_update');
+
+
+  // Admin Pricing Page
+  Route::get('admin/pricing-page', [AdminPricingPageController::class, 'index'])->name('admin_pricing_page');
+  Route::post('admin/pricing-page/update', [AdminPricingPageController::class, 'update'])->name('admin_pricing_page_update');
+
+
+  // Admin Other Page
+  Route::get('admin/other-page', [AdminOtherPageController::class, 'index'])->name('admin_other_page');
+  Route::post('admin/other-page/update', [AdminOtherPageController::class, 'update'])->name('admin_other_page_update');
 
 
   // Job Category
@@ -167,3 +187,25 @@ Route::get('faq', [FaqController::class, 'index'])->name('faq');
 Route::get('privacy-policy', [PrivacyController::class, 'index'])->name('privacy');
 Route::get('contact', [ContactController::class, 'index'])->name('contact');
 Route::post('contact/submit', [ContactController::class, 'store'])->name('contact.store');
+Route::get('pricing', [PricingController::class, 'index'])->name('pricing');
+Route::get('login', [LoginController::class, 'index'])->name('login');
+Route::get('signup', [SignupController::class, 'index'])->name('signup');
+Route::get('company/forget-password', [ForgetPasswordController::class, 'company_forget_password'])->name('company_forget_password');
+Route::post('company/forget-password', [ForgetPasswordController::class, 'company_forget_password_post'])->name('company_forget_password_post');
+
+Route::get('company/reset-password/{token}/{email}', [ForgetPasswordController::class, 'company_reset_password'])->name('company_reset_password');
+Route::post('company/reset-password/{token}/{email}', [ForgetPasswordController::class, 'company_reset_password_post'])->name('company_reset_password_post');
+
+
+
+/* Company */
+Route::post('company-signup', [SignupController::class, 'company_signup_store'])->name('company.signup.store');
+Route::post('company-login', [LoginController::class, 'company_login_post'])->name('company.login.post');
+Route::get('company/verify/{token}/{email}', [SignupController::class, 'company_verify'])->name('company.verify');
+Route::get('company/logout', [LoginController::class, 'company_logout'])->name('company_logout');
+
+
+
+Route::middleware(['company:company', 'prevent-back-history'])->group(function () {
+  Route::get('company/dashboard', [CompanyController::class, 'dashboard'])->name('company_dashboard');
+});

@@ -24,21 +24,33 @@
                     <div class="col-md-6 left-side">
                         <ul>
                             <li class="phone-text">+2349062684833</li>
-                            <li class="email-text">contact@mickyparydev.com</li>
+                            <li class="email-text">mikipary@gmail.com</li>
                         </ul>
                     </div>
+
                     <div class="col-md-6 right-side">
                         <ul class="right">
+                            @if(!Auth::guard('company')->check())
                             <li class="menu">
-                                <a href="login.html"
+                                <a href="{{ route('login') }}"
                                     ><i class="fas fa-sign-in-alt"></i> Login</a
                                 >
                             </li>
                             <li class="menu">
-                                <a href="signup.html"
+                                <a href="{{ route('signup') }}"
                                     ><i class="fas fa-user"></i> Sign Up</a
                                 >
                             </li>
+                            @else
+
+                            <li class="menu">
+                                <a href="{{ route('company_dashboard') }}"
+                                    ><i class="fas fa-home"></i> Dashboard</a
+                                >
+                            </li>
+                            
+                            @endif
+                            
                         </ul>
                     </div>
                 </div>

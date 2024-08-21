@@ -1,5 +1,12 @@
 @extends('frontend.layout.app')
 
+@section('seo_title')
+{{ $home_page_data->title }}
+@endsection
+
+@section('seo_meta_description')
+{{ $home_page_data->meta_description }}
+@endsection
 
 @section('main_content')
 
@@ -459,7 +466,7 @@
                       </div>
                       <div class="description">
                           <p>
-                            {!! nl2br($item->comment) !!}
+                            {!! $item->comment !!}
                           </p>
                       </div>
                   </div>
@@ -482,7 +489,7 @@
               <div class="heading">
                   <h2>{{ $home_page_data->blog_heading }}</h2>
                   <p>
-                    {!! nl2br($home_page_data->blog_subheading) !!}
+                    {!! $home_page_data->blog_subheading !!}
                   </p>
               </div>
           </div>

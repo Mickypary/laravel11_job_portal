@@ -34,7 +34,7 @@
                           >
                       </li>
                       <li class="nav-item {{ Request::is('pricing') ? 'active' : '' }}">
-                          <a href="pricing.html" class="nav-link"
+                          <a href="{{ route('pricing') }}" class="nav-link"
                               >Pricing</a
                           >
                       </li>

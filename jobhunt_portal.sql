@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2024 at 12:57 AM
+-- Generation Time: Aug 21, 2024 at 10:38 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -94,6 +94,54 @@ CREATE TABLE IF NOT EXISTS `cache_locks` (
   `expiration` int(11) NOT NULL,
   PRIMARY KEY (`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `companies`
+--
+
+CREATE TABLE IF NOT EXISTS `companies` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `company_name` varchar(255) NOT NULL,
+  `contact_person` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `token` varchar(255) DEFAULT NULL,
+  `logo` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `website` varchar(255) DEFAULT NULL,
+  `company_size` varchar(255) DEFAULT NULL,
+  `founded_on` varchar(255) DEFAULT NULL,
+  `industry_id` int(11) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `opening_hour_mon` varchar(255) DEFAULT NULL,
+  `opening_hour_tue` varchar(255) DEFAULT NULL,
+  `opening_hour_wed` varchar(255) DEFAULT NULL,
+  `opening_hour_thu` varchar(255) DEFAULT NULL,
+  `opening_hour_fri` varchar(255) DEFAULT NULL,
+  `opening_hour_sat` varchar(255) DEFAULT NULL,
+  `opening_hour_sun` varchar(255) DEFAULT NULL,
+  `map_code` text DEFAULT NULL,
+  `facebook` text DEFAULT NULL,
+  `twitter` text DEFAULT NULL,
+  `linkedin` text DEFAULT NULL,
+  `instagram` text DEFAULT NULL,
+  `status` tinyint(4) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `companies`
+--
+
+INSERT INTO `companies` (`id`, `company_name`, `contact_person`, `username`, `email`, `password`, `token`, `logo`, `phone`, `address`, `country`, `website`, `company_size`, `founded_on`, `industry_id`, `description`, `opening_hour_mon`, `opening_hour_tue`, `opening_hour_wed`, `opening_hour_thu`, `opening_hour_fri`, `opening_hour_sat`, `opening_hour_sun`, `map_code`, `facebook`, `twitter`, `linkedin`, `instagram`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Grenville Schools', 'Damilola Babalola', 'grenville', 'info@grenvilleschool.com', '$2y$12$JVo1T1CHwaZYDQXae5GbMOHXQ3z01ZtafUmyeNHgYsfBong0bmJAq', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-08-19 12:49:17', '2024-08-21 19:46:20');
 
 -- --------------------------------------------------------
 
@@ -217,6 +265,8 @@ CREATE TABLE IF NOT EXISTS `home_page_items` (
   `blog_heading` text NOT NULL,
   `blog_subheading` text DEFAULT NULL,
   `blog_status` text NOT NULL,
+  `title` text DEFAULT NULL,
+  `meta_description` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -226,8 +276,8 @@ CREATE TABLE IF NOT EXISTS `home_page_items` (
 -- Dumping data for table `home_page_items`
 --
 
-INSERT INTO `home_page_items` (`id`, `heading`, `text`, `job_title`, `job_category`, `job_location`, `search`, `background_image`, `job_category_heading`, `job_category_subheading`, `job_category_status`, `why_choose_us_heading`, `why_choose_us_subheading`, `why_choose_us_background`, `why_choose_us_status`, `featured_jobs_heading`, `featured_jobs_subheading`, `featured_jobs_status`, `testimonial_heading`, `testimonial_background`, `testimonial_status`, `blog_heading`, `blog_subheading`, `blog_status`, `created_at`, `updated_at`) VALUES
-(1, 'Find Your Desired Job', 'Search the best, perfect and suitable jobs that matches your skills in your expertise area.', 'Job Title', 'Job Category', 'Job Location', 'Search', 'banner_home.jpg', 'Job Categories', 'Get the list of all the popular job categories here', 'Show', 'Why Choose Us', 'Our Methods to help you build your career in future', 'why_choose_home_background.jpg', 'Show', 'Featured Jobs', 'Find the awesome jobs that matches your skill', 'Show', 'Our Happy Clients', 'testimonial_home_background.jpg', 'Show', 'Latest News', 'Check our latest news from the following section', 'Show', NULL, '2024-08-13 17:17:11');
+INSERT INTO `home_page_items` (`id`, `heading`, `text`, `job_title`, `job_category`, `job_location`, `search`, `background_image`, `job_category_heading`, `job_category_subheading`, `job_category_status`, `why_choose_us_heading`, `why_choose_us_subheading`, `why_choose_us_background`, `why_choose_us_status`, `featured_jobs_heading`, `featured_jobs_subheading`, `featured_jobs_status`, `testimonial_heading`, `testimonial_background`, `testimonial_status`, `blog_heading`, `blog_subheading`, `blog_status`, `title`, `meta_description`, `created_at`, `updated_at`) VALUES
+(1, 'Find Your Desired Job', 'Search the best, perfect and suitable jobs that matches your skills in your expertise area.', 'Job Title', 'Job Category', 'Job Location', 'Search', 'banner_home.jpg', 'Job Categories', 'Get the list of all the popular job categories here', 'Show', 'Why Choose Us', 'Our Methods to help you build your career in future', 'why_choose_home_background.jpg', 'Show', 'Featured Jobs', 'Find the awesome jobs that matches your skill', 'Show', 'Our Happy Clients', 'testimonial_home_background.jpg', 'Show', 'Latest News', 'Check our latest news from the following section', 'Show', 'Job Hunt | A Complete Job Directory Portal', 'Job Hunt | A Complete Job Directory Portal', NULL, '2024-08-18 11:19:42');
 
 -- --------------------------------------------------------
 
@@ -337,7 +387,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -362,7 +412,39 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (17, '2024_08_17_152745_create_contact_page_items_table', 14),
 (18, '2024_08_17_194954_create_job_page_category_items_table', 15),
 (19, '2024_08_17_222245_create_packages_table', 16),
-(20, '2024_08_17_233025_create_packages_table', 17);
+(20, '2024_08_17_233025_create_packages_table', 17),
+(21, '2024_08_18_105522_create_pricing_page_items_table', 18),
+(22, '2024_08_18_123108_create_other_page_items_table', 19),
+(23, '2024_08_18_205948_create_companies_table', 20);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `other_page_items`
+--
+
+CREATE TABLE IF NOT EXISTS `other_page_items` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `login_page_heading` text NOT NULL,
+  `login_page_title` text DEFAULT NULL,
+  `login_page_meta_description` text DEFAULT NULL,
+  `signup_page_heading` text NOT NULL,
+  `signup_page_title` text DEFAULT NULL,
+  `signup_page_meta_description` text DEFAULT NULL,
+  `forget_password_page_heading` text NOT NULL,
+  `forget_password_page_title` text DEFAULT NULL,
+  `forget_password_page_meta_description` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `other_page_items`
+--
+
+INSERT INTO `other_page_items` (`id`, `login_page_heading`, `login_page_title`, `login_page_meta_description`, `signup_page_heading`, `signup_page_title`, `signup_page_meta_description`, `forget_password_page_heading`, `forget_password_page_title`, `forget_password_page_meta_description`, `created_at`, `updated_at`) VALUES
+(1, 'Login 1111', 'Login', 'Login', 'Create Account', 'Signup', 'Signup', 'Forget Password', 'Forget Password', 'Forget Password', NULL, '2024-08-18 13:05:48');
 
 -- --------------------------------------------------------
 
@@ -373,8 +455,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 CREATE TABLE IF NOT EXISTS `packages` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `package_name` varchar(200) NOT NULL,
-  `package_price` tinyint(4) NOT NULL,
-  `package_days` tinyint(4) NOT NULL,
+  `package_price` smallint(4) NOT NULL,
+  `package_days` smallint(4) NOT NULL,
   `package_display_time` varchar(100) NOT NULL,
   `total_allowed_jobs` tinyint(4) NOT NULL,
   `total_allowed_featured_jobs` tinyint(4) NOT NULL,
@@ -392,8 +474,7 @@ CREATE TABLE IF NOT EXISTS `packages` (
 INSERT INTO `packages` (`id`, `package_name`, `package_price`, `package_days`, `package_display_time`, `total_allowed_jobs`, `total_allowed_featured_jobs`, `total_allowed_photos`, `total_allowed_videos`, `created_at`, `updated_at`) VALUES
 (1, 'Basic', 19, 7, '1 Week', 5, 0, 0, 0, '2024-08-17 22:32:38', '2024-08-17 22:49:40'),
 (2, 'Standard', 29, 30, '1 Month', 15, 5, 5, 2, '2024-08-17 22:34:12', '2024-08-17 22:34:12'),
-(3, 'Gold', 49, 60, '2 Month', -1, 15, 15, 10, '2024-08-17 22:37:21', '2024-08-17 22:37:21'),
-(5, 'qww', 78, 12, '12', 23, 12, 12, 12, '2024-08-17 22:55:34', '2024-08-17 22:55:34');
+(3, 'Gold', 49, 60, '2 Month', -1, 15, 15, 10, '2024-08-17 22:37:21', '2024-08-17 22:37:21');
 
 -- --------------------------------------------------------
 
@@ -445,6 +526,29 @@ INSERT INTO `posts` (`id`, `heading`, `slug`, `short_description`, `description`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pricing_page_items`
+--
+
+CREATE TABLE IF NOT EXISTS `pricing_page_items` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `heading` text NOT NULL,
+  `title` text DEFAULT NULL,
+  `meta_description` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pricing_page_items`
+--
+
+INSERT INTO `pricing_page_items` (`id`, `heading`, `title`, `meta_description`, `created_at`, `updated_at`) VALUES
+(1, 'Pricing', 'Pricing SEO', 'Pricing DESC', NULL, '2024-08-18 10:35:19');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `privacy_page_items`
 --
 
@@ -489,7 +593,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('rFlXONbftZ1x0GaYwhrQLzR1pblT3UXxiUovlKXt', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiVUJsRVRzanJMb1JYWG5DUkxid25uYVJyVE1JVjhQS09pZ1dVUlc3YiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9wYWNrYWdlL3ZpZXciO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1723935334);
+('SAsWfmMJjpsm7imtRO4FU2eFt1TyNoJTqZXjWJBr', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMEhDT3lDMXEycUVac3Bad0wwRzYyVnpXUFh5aTM4d3FXYTRGbHVIWiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NTI6ImxvZ2luX2FkbWluXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1724272618);
 
 -- --------------------------------------------------------
 
