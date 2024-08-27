@@ -38,43 +38,21 @@
                                   </div>
                                   <div class="col-lg-3">
                                       <div class="form-group">
-                                          <select
-                                              name=""
-                                              class="form-select select2"
-                                          >
+                                          <select name="" class="form-select select2">
                                               <option value="">
                                                 {{ $home_page_data->job_location }}
                                               </option>
-                                              <option value="">
-                                                  Australia
+                                              @foreach($all_job_locations as $item)
+                                              <option value="{{ $item->id }}">
+                                                  {{ $item->name }}
                                               </option>
-                                              <option value="">
-                                                  Bangladesh
-                                              </option>
-                                              <option value="">
-                                                  Canada
-                                              </option>
-                                              <option value="">
-                                                  China
-                                              </option>
-                                              <option value="">
-                                                  India
-                                              </option>
-                                              <option value="">
-                                                  United Kingdom
-                                              </option>
-                                              <option value="">
-                                                  United States
-                                              </option>
+                                              @endforeach
                                           </select>
                                       </div>
                                   </div>
                                   <div class="col-lg-3">
                                       <div class="form-group">
-                                          <select
-                                              name=""
-                                              class="form-select select2"
-                                          >
+                                          <select name="" class="form-select select2">
                                               <option value="">
                                                 {{ $home_page_data->job_category }}
                                               </option>

@@ -48,6 +48,10 @@ return [
             'driver' => 'session',
             'provider' => 'companies',
         ],
+        'candidate' => [
+            'driver' => 'session',
+            'provider' => 'candidates',
+        ],
     ],
 
     /*
@@ -79,6 +83,10 @@ return [
         'companies' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\Company::class),
+        ],
+        'candidates' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\Candidate::class),
         ],
 
         // 'users' => [
@@ -121,6 +129,12 @@ return [
         ],
         'companies' => [
             'provider' => 'companies',
+            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'companies' => [
+            'provider' => 'candidates',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
             'expire' => 60,
             'throttle' => 60,

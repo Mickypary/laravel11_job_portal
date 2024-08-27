@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2024 at 10:38 PM
+-- Generation Time: Aug 27, 2024 at 10:22 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `password`, `photo`, `token`, `created_at`, `updated_at`) VALUES
-(1, 'Richard Mickypary', 'mikipary@gmail.com', '$2y$12$NY5IRcNll/um/OWeDE.US.lR39jSYyYejmG6cYWxnqGLyn5dMgmWy', 'admin.png', '', NULL, '2024-08-10 11:15:09');
+(1, 'Richard Mickypary', 'mikipary@gmail.com', '$2y$12$xH9fowWGhnvRRor1G8176OuccpUQStObkftxtcUbuBjUcdjEbqmT6', 'admin.png', '', NULL, '2024-08-27 17:16:31');
 
 -- --------------------------------------------------------
 
@@ -94,6 +94,45 @@ CREATE TABLE IF NOT EXISTS `cache_locks` (
   `expiration` int(11) NOT NULL,
   PRIMARY KEY (`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `candidates`
+--
+
+CREATE TABLE IF NOT EXISTS `candidates` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `designation` varchar(255) DEFAULT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `token` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
+  `biography` text DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `zip_code` varchar(255) DEFAULT NULL,
+  `gender` varchar(255) DEFAULT NULL,
+  `marital_status` varchar(255) DEFAULT NULL,
+  `dob` varchar(255) DEFAULT NULL,
+  `website` varchar(255) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `candidates`
+--
+
+INSERT INTO `candidates` (`id`, `name`, `designation`, `username`, `email`, `password`, `token`, `photo`, `biography`, `phone`, `address`, `country`, `state`, `city`, `zip_code`, `gender`, `marital_status`, `dob`, `website`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Peter Smith', NULL, 'peter', 'peter@gmail.com', '$2y$12$wBEtlXEqUP33tO2Oapk9S.ZWUpqM5JNEc9kTF7qA1TGEsXWmNq7ZS', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-08-22 12:44:45', '2024-08-24 19:38:00');
 
 -- --------------------------------------------------------
 
@@ -356,6 +395,58 @@ INSERT INTO `job_categories` (`id`, `name`, `icon`, `created_at`, `updated_at`) 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `job_experiences`
+--
+
+CREATE TABLE IF NOT EXISTS `job_experiences` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `job_experiences`
+--
+
+INSERT INTO `job_experiences` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Fresher', '2024-08-27 20:10:25', '2024-08-27 20:10:25'),
+(2, '1 Year', '2024-08-27 20:10:55', '2024-08-27 20:10:55'),
+(3, '2 Years', '2024-08-27 20:11:13', '2024-08-27 20:11:13'),
+(4, '3 Years', '2024-08-27 20:12:09', '2024-08-27 20:12:09'),
+(5, '4 Years', '2024-08-27 20:12:15', '2024-08-27 20:12:15'),
+(6, '5 Years', '2024-08-27 20:12:25', '2024-08-27 20:17:21'),
+(7, '5+ Years', '2024-08-27 20:17:30', '2024-08-27 20:17:30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_locations`
+--
+
+CREATE TABLE IF NOT EXISTS `job_locations` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `job_locations`
+--
+
+INSERT INTO `job_locations` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Canada', '2024-08-27 17:38:45', '2024-08-27 17:38:45'),
+(2, 'Australia', '2024-08-27 17:39:35', '2024-08-27 17:39:35'),
+(3, 'USA', '2024-08-27 17:40:07', '2024-08-27 17:40:07'),
+(4, 'Finland', '2024-08-27 17:40:29', '2024-08-27 17:40:29'),
+(5, 'Germany', '2024-08-27 17:40:50', '2024-08-27 17:41:36');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `job_page_category_items`
 --
 
@@ -379,6 +470,31 @@ INSERT INTO `job_page_category_items` (`id`, `heading`, `title`, `meta_descripti
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `job_types`
+--
+
+CREATE TABLE IF NOT EXISTS `job_types` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `job_types`
+--
+
+INSERT INTO `job_types` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Full Time', '2024-08-27 19:15:23', '2024-08-27 19:15:23'),
+(2, 'Part Time', '2024-08-27 19:15:41', '2024-08-27 19:15:41'),
+(3, 'Contractual', '2024-08-27 19:16:13', '2024-08-27 19:16:13'),
+(4, 'Internship', '2024-08-27 19:16:44', '2024-08-27 19:16:44'),
+(5, 'Freelance', '2024-08-27 19:17:00', '2024-08-27 19:19:48');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -387,7 +503,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -415,7 +531,44 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (20, '2024_08_17_233025_create_packages_table', 17),
 (21, '2024_08_18_105522_create_pricing_page_items_table', 18),
 (22, '2024_08_18_123108_create_other_page_items_table', 19),
-(23, '2024_08_18_205948_create_companies_table', 20);
+(23, '2024_08_18_205948_create_companies_table', 20),
+(24, '2024_08_22_105115_create_candidates_table', 21),
+(25, '2024_08_25_160533_create_orders_table', 22),
+(26, '2024_08_27_180159_create_job_locations_table', 23),
+(27, '2024_08_27_190729_create_job_types_table', 24),
+(28, '2024_08_27_202353_create_job_experiences_table', 25);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) NOT NULL,
+  `package_id` int(11) NOT NULL,
+  `order_no` varchar(255) NOT NULL,
+  `paid_amount` varchar(255) NOT NULL,
+  `payment_method` varchar(255) NOT NULL,
+  `start_date` varchar(255) NOT NULL,
+  `expire_date` varchar(255) NOT NULL,
+  `currently_active` tinyint(4) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `company_id`, `package_id`, `order_no`, `paid_amount`, `payment_method`, `start_date`, `expire_date`, `currently_active`, `created_at`, `updated_at`) VALUES
+(1, 1, 3, '1724612974', '49', 'PayPal', '2024-08-25', '2024-10-24', 0, '2024-08-25 19:09:34', '2024-08-25 19:13:31'),
+(2, 1, 2, '1724613211', '29', 'PayPal', '2024-08-25', '2024-09-24', 0, '2024-08-25 19:13:31', '2024-08-25 19:15:13'),
+(3, 1, 1, '1724613313', '19', 'PayPal', '2024-08-25', '2024-09-01', 0, '2024-08-25 19:15:13', '2024-08-27 15:11:56'),
+(4, 1, 2, '1724771516', '29', 'Stripe', '2024-08-27', '2024-09-26', 0, '2024-08-27 15:11:56', '2024-08-27 15:47:17'),
+(5, 1, 1, '1724773637', '19', 'Stripe', '2024-08-27', '2024-09-03', 1, '2024-08-27 15:47:17', '2024-08-27 15:47:17');
 
 -- --------------------------------------------------------
 
@@ -593,7 +746,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('SAsWfmMJjpsm7imtRO4FU2eFt1TyNoJTqZXjWJBr', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMEhDT3lDMXEycUVac3Bad0wwRzYyVnpXUFh5aTM4d3FXYTRGbHVIWiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NTI6ImxvZ2luX2FkbWluXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1724272618);
+('J0rjzwmMSMJeZFbkGjR7B8Lz47hWERPON8Z0KfLc', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibGhGcFZWNEZsRktBY2ZvUnBhMUZOZ1M4WFNBTllkbXl5OGZkTktNSiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9qb2ItZXhwZXJpZW5jZS92aWV3Ijt9czo1NDoibG9naW5fY29tcGFueV81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1724789861);
 
 -- --------------------------------------------------------
 
