@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2024 at 10:22 PM
+-- Generation Time: Aug 28, 2024 at 02:36 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -181,6 +181,83 @@ CREATE TABLE IF NOT EXISTS `companies` (
 
 INSERT INTO `companies` (`id`, `company_name`, `contact_person`, `username`, `email`, `password`, `token`, `logo`, `phone`, `address`, `country`, `website`, `company_size`, `founded_on`, `industry_id`, `description`, `opening_hour_mon`, `opening_hour_tue`, `opening_hour_wed`, `opening_hour_thu`, `opening_hour_fri`, `opening_hour_sat`, `opening_hour_sun`, `map_code`, `facebook`, `twitter`, `linkedin`, `instagram`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Grenville Schools', 'Damilola Babalola', 'grenville', 'info@grenvilleschool.com', '$2y$12$JVo1T1CHwaZYDQXae5GbMOHXQ3z01ZtafUmyeNHgYsfBong0bmJAq', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-08-19 12:49:17', '2024-08-21 19:46:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company_industries`
+--
+
+CREATE TABLE IF NOT EXISTS `company_industries` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `company_industries`
+--
+
+INSERT INTO `company_industries` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Accounting Firm', '2024-08-28 00:03:01', '2024-08-28 00:03:01'),
+(2, 'Software Company', '2024-08-28 00:03:28', '2024-08-28 00:03:28'),
+(3, 'IT Firm', '2024-08-28 00:03:53', '2024-08-28 00:03:53'),
+(4, 'Law Firm', '2024-08-28 00:04:16', '2024-08-28 00:04:16'),
+(5, 'Real Estate Company', '2024-08-28 00:04:26', '2024-08-28 00:05:05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company_locations`
+--
+
+CREATE TABLE IF NOT EXISTS `company_locations` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `company_locations`
+--
+
+INSERT INTO `company_locations` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'USA', '2024-08-27 23:40:26', '2024-08-27 23:40:26'),
+(2, 'Canada', '2024-08-27 23:40:34', '2024-08-27 23:40:34'),
+(3, 'Australia', '2024-08-27 23:40:57', '2024-08-27 23:40:57'),
+(4, 'China', '2024-08-27 23:41:15', '2024-08-27 23:41:15'),
+(5, 'Japan', '2024-08-27 23:41:31', '2024-08-27 23:41:31'),
+(6, 'Italy', '2024-08-27 23:41:55', '2024-08-27 23:42:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company_sizes`
+--
+
+CREATE TABLE IF NOT EXISTS `company_sizes` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `company_sizes`
+--
+
+INSERT INTO `company_sizes` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, '2-5 Persons', '2024-08-28 00:33:15', '2024-08-28 00:33:15'),
+(2, '5-10 Persons', '2024-08-28 00:33:37', '2024-08-28 00:33:37'),
+(3, '10-20 Persons', '2024-08-28 00:33:58', '2024-08-28 00:33:58'),
+(4, '20-50 Persons', '2024-08-28 00:34:13', '2024-08-28 00:34:13'),
+(5, '50-100 Persons', '2024-08-28 00:34:29', '2024-08-28 00:34:29'),
+(6, '100+ Persons', '2024-08-28 00:34:46', '2024-08-28 00:35:04');
 
 -- --------------------------------------------------------
 
@@ -422,6 +499,29 @@ INSERT INTO `job_experiences` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `job_genders`
+--
+
+CREATE TABLE IF NOT EXISTS `job_genders` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `job_genders`
+--
+
+INSERT INTO `job_genders` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Male', '2024-08-27 20:59:19', '2024-08-27 20:59:19'),
+(2, 'Female', '2024-08-27 20:59:25', '2024-08-27 20:59:25'),
+(3, 'Not Specified', '2024-08-27 20:59:59', '2024-08-27 21:00:35');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `job_locations`
 --
 
@@ -431,7 +531,7 @@ CREATE TABLE IF NOT EXISTS `job_locations` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `job_locations`
@@ -442,7 +542,8 @@ INSERT INTO `job_locations` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (2, 'Australia', '2024-08-27 17:39:35', '2024-08-27 17:39:35'),
 (3, 'USA', '2024-08-27 17:40:07', '2024-08-27 17:40:07'),
 (4, 'Finland', '2024-08-27 17:40:29', '2024-08-27 17:40:29'),
-(5, 'Germany', '2024-08-27 17:40:50', '2024-08-27 17:41:36');
+(5, 'Germany', '2024-08-27 17:40:50', '2024-08-27 17:41:36'),
+(7, 'Nigeria', '2024-08-27 20:53:01', '2024-08-27 20:53:01');
 
 -- --------------------------------------------------------
 
@@ -466,6 +567,35 @@ CREATE TABLE IF NOT EXISTS `job_page_category_items` (
 
 INSERT INTO `job_page_category_items` (`id`, `heading`, `title`, `meta_description`, `created_at`, `updated_at`) VALUES
 (1, 'Job Categories', 'Job Categories SEO', 'Job Categories', NULL, '2024-08-17 19:35:21');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_salary_ranges`
+--
+
+CREATE TABLE IF NOT EXISTS `job_salary_ranges` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `job_salary_ranges`
+--
+
+INSERT INTO `job_salary_ranges` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, '$100-$500', '2024-08-27 22:03:40', '2024-08-27 22:03:40'),
+(2, '$500-$1000', '2024-08-27 22:04:24', '2024-08-27 22:04:24'),
+(3, '$1000-$1500', '2024-08-27 22:04:58', '2024-08-27 22:04:58'),
+(4, '$1500-$2000', '2024-08-27 22:05:31', '2024-08-27 22:05:31'),
+(5, '$2000-$2500', '2024-08-27 22:06:04', '2024-08-27 22:06:04'),
+(6, '$2500-$3000', '2024-08-27 22:14:55', '2024-08-27 22:14:55'),
+(7, '$3000-$3500', '2024-08-27 22:15:27', '2024-08-27 22:15:27'),
+(8, '$3500-$4000', '2024-08-27 22:16:07', '2024-08-27 22:16:07'),
+(9, '$4000+', '2024-08-27 22:16:42', '2024-08-27 22:16:42');
 
 -- --------------------------------------------------------
 
@@ -503,7 +633,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -536,7 +666,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (25, '2024_08_25_160533_create_orders_table', 22),
 (26, '2024_08_27_180159_create_job_locations_table', 23),
 (27, '2024_08_27_190729_create_job_types_table', 24),
-(28, '2024_08_27_202353_create_job_experiences_table', 25);
+(28, '2024_08_27_202353_create_job_experiences_table', 25),
+(29, '2024_08_27_213424_create_job_genders_table', 26),
+(30, '2024_08_27_220448_create_job_salary_ranges_table', 27),
+(31, '2024_08_27_233355_create_company_locations_table', 28),
+(32, '2024_08_28_005056_create_company_industries_table', 29),
+(33, '2024_08_28_010752_create_company_sizes_table', 30);
 
 -- --------------------------------------------------------
 
@@ -746,7 +881,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('J0rjzwmMSMJeZFbkGjR7B8Lz47hWERPON8Z0KfLc', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibGhGcFZWNEZsRktBY2ZvUnBhMUZOZ1M4WFNBTllkbXl5OGZkTktNSiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9qb2ItZXhwZXJpZW5jZS92aWV3Ijt9czo1NDoibG9naW5fY29tcGFueV81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1724789861);
+('J0rjzwmMSMJeZFbkGjR7B8Lz47hWERPON8Z0KfLc', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibGhGcFZWNEZsRktBY2ZvUnBhMUZOZ1M4WFNBTllkbXl5OGZkTktNSiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9jb21wYW55LWxvY2F0aW9uL3ZpZXciO31zOjU0OiJsb2dpbl9jb21wYW55XzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1724805349);
 
 -- --------------------------------------------------------
 

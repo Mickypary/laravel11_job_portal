@@ -1,10 +1,10 @@
 @extends('admin.layout.app')
 
 
-@section('heading', 'Add Job Location')
+@section('heading', 'Add Job Salary Range')
 @section('button')
 <div class="ms-auto">
-  <a href="{{ route('admin_job_location') }}" class="btn btn-primary"><i class="fas fa-eye"></i> View All</a>
+  <a href="{{ route('admin_job_salary_range') }}" class="btn btn-primary"><i class="fas fa-eye"></i> View All</a>
 </div>
 @endsection
 
@@ -15,7 +15,7 @@
       <div class="col-12">
           <div class="card">
               <div class="card-body">
-                  <form action="{{ route('admin_job_location_store') }}" method="post"">
+                  <form action="{{ route('admin_job_salary_range_store') }}" method="post"">
                     @csrf
                     
                       <div class="form-group mb-3">

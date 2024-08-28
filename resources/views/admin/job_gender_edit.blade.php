@@ -1,10 +1,10 @@
 @extends('admin.layout.app')
 
 
-@section('heading', 'Add Job Location')
+@section('heading', 'Edit Job Gender')
 @section('button')
 <div class="ms-auto">
-  <a href="{{ route('admin_job_location') }}" class="btn btn-primary"><i class="fas fa-eye"></i> View All</a>
+  <a href="{{ route('admin_job_gender') }}" class="btn btn-primary"><i class="fas fa-eye"></i> View All</a>
 </div>
 @endsection
 
@@ -15,15 +15,15 @@
       <div class="col-12">
           <div class="card">
               <div class="card-body">
-                  <form action="{{ route('admin_job_location_store') }}" method="post"">
+                  <form action="{{ route('admin_job_gender_update', $job_gender_single->id) }}" method="post"">
                     @csrf
                     
                       <div class="form-group mb-3">
                         <label>Name *</label>
-                        <input type="text" class="form-control" name="name">
+                        <input type="text" class="form-control" name="name" value="{{ $job_gender_single->name }}">
                       </div>
                       <div class="form-group">
-                          <button type="submit" class="btn btn-primary">Submit</button>
+                          <button type="submit" class="btn btn-primary">Update</button>
                       </div>
 
                   </form>

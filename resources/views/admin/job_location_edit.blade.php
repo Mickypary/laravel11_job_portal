@@ -19,7 +19,7 @@
                     @csrf
                     
                       <div class="form-group mb-3">
-                        <label>Location Name *</label>
+                        <label>Name *</label>
                         <input type="text" class="form-control" name="name" value="{{ $job_location_single->name }}">
                       </div>
                       <div class="form-group">

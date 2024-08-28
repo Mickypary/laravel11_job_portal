@@ -19,7 +19,7 @@
                     @csrf
                     
                       <div class="form-group mb-3">
-                        <label>Experience Name *</label>
+                        <label>Name *</label>
                         <input type="text" class="form-control" name="name">
                       </div>
                       <div class="form-group">
