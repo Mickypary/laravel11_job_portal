@@ -22,11 +22,11 @@ return new class extends Migration
             $table->string('logo')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-            $table->string('country')->nullable();
-            $table->string('website')->nullable();
-            $table->string('company_size')->nullable();
+            $table->integer('company_location_id')->nullable();
+            $table->integer('company_industry_id')->nullable();
+            $table->integer('company_size_id')->nullable();
             $table->string('founded_on')->nullable();
-            $table->integer('industry_id')->nullable();
+            $table->string('website')->nullable();
             $table->text('description')->nullable();
             $table->string('opening_hour_mon')->nullable();
             $table->string('opening_hour_tue')->nullable();

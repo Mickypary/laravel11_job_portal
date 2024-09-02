@@ -318,6 +318,14 @@ Route::middleware(['company:company', 'prevent-back-history'])->group(function (
   Route::post('company/stripe/payment', [CompanyController::class, 'stripe'])->name('company_stripe');
   Route::get('company/stripe/success', [CompanyController::class, 'stripe_success'])->name('company_stripe_success');
   Route::get('company/stripe/cancel', [CompanyController::class, 'stripe_cancel'])->name('company_stripe_cancel');
+
+  Route::get('company/edit-profile', [CompanyController::class, 'edit_profile'])->name('company_edit_profile');
+  Route::post('company/profile/update', [CompanyController::class, 'update_profile'])->name('company_update_profile');
+
+
+  Route::get('company/photos', [CompanyController::class, 'photos'])->name('company_photos');
+  Route::post('company/photos/submit', [CompanyController::class, 'submit_photos'])->name('company_photos_submit');
+  Route::get('company/photos/delete/{id}', [CompanyController::class, 'delete_photos'])->name('company_photos_delete');
 });
 
 

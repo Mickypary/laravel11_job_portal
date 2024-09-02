@@ -39,7 +39,7 @@
                       <div class="left">
                           <i class="fas fa-phone"></i>
                       </div>
-                      <div class="right">contact@arefindev.com</div>
+                      <div class="right">contact@mickyparydev.com</div>
                   </div>
                   <div class="list-item">
                       <div class="left">
@@ -86,18 +86,10 @@
                   </p>
                   <form action="" method="post">
                       <div class="form-group">
-                          <input
-                              type="text"
-                              name=""
-                              class="form-control"
-                          />
+                          <input type="text" name="" class="form-control" />
                       </div>
                       <div class="form-group">
-                          <input
-                              type="submit"
-                              class="btn btn-primary"
-                              value="Subscribe Now"
-                          />
+                          <input type="submit" class="btn btn-primary" value="Subscribe Now" />
                       </div>
                   </form>
               </div>
@@ -111,7 +103,7 @@
       <div class="row">
           <div class="col-lg-6 col-md-6">
               <div class="copyright">
-                  Copyright 2022, ArefinDev. All Rights Reserved.
+                  Copyright 2022, MickyparyDev. All Rights Reserved.
               </div>
           </div>
           <div class="col-lg-6 col-md-6">

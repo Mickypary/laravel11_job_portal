@@ -20,8 +20,8 @@
   <li class="list-group-item">
       <a href="company-jobs.html">All Jobs</a>
   </li>
-  <li class="list-group-item">
-      <a href="company-photos.html">Photos</a>
+  <li class="list-group-item {{ Request::is('company/photos') ? 'active' : '' }}">
+      <a href="{{ route('company_photos') }}">Photos</a>
   </li>
   <li class="list-group-item">
       <a href="company-videos.html">Videos</a>
@@ -31,8 +31,8 @@
           >Candidate Applications</a
       >
   </li>
-  <li class="list-group-item">
-      <a href="company-edit-profile.html"
+  <li class="list-group-item {{ Request::is('company/edit-profile') ? 'active' : '' }}">
+      <a href="{{ route('company_edit_profile') }}"
           >Edit Profile</a
       >
   </li>

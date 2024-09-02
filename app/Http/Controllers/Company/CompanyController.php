@@ -4,12 +4,17 @@ namespace App\Http\Controllers\Company;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Order;
 use App\Models\Package;
-
+use App\Models\Company;
+use App\Models\CompanyLocation;
+use App\Models\CompanySize;
+use App\Models\CompanyIndustry;
+use App\Models\CompanyPhoto;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class CompanyController extends Controller
@@ -23,6 +28,133 @@ class CompanyController extends Controller
     {
         $orders = Order::orderBy('id', 'desc')->with('rPackage')->where('company_id', Auth::guard('company')->user()->id)->get();
         return view('company.orders', compact('orders'));
+    }
+
+    public function edit_profile()
+    {
+        $company_locations = CompanyLocation::orderBy('name', 'asc')->get();
+        $company_sizes = CompanySize::get();
+        $company_industries = CompanyIndustry::orderBy('name', 'asc')->get();
+        return view('company.edit_profile', compact('company_locations', 'company_sizes', 'company_industries'));
+    }
+    public function update_profile(Request $request)
+    {
+        $obj = Company::where('id', Auth::guard('company')->user()->id)->first();
+        $id = $obj->id;
+
+        $request->validate([
+            'company_name' => 'required',
+            'contact_person' => 'required',
+            'username' => ['required', 'alpha_dash', Rule::unique('companies')->ignore($id)],
+            'email' => ['required', 'email', Rule::unique('companies')->ignore($id)],
+        ]);
+
+
+        if ($request->hasFile('logo')) {
+            $request->validate([
+                'logo' => 'required|image|mimes:jpg,jpeg,png,gif',
+            ]);
+
+            if (file_exists(public_path('uploads/' . $obj->logo)) && !empty($obj->logo)) {
+                unlink(public_path('uploads/' . $obj->logo));
+            }
+
+            // Image processing
+            $ext = $request->file('logo')->extension();
+            $final_name = 'company_logo_' . time() . '.' . $ext;
+            $request->file('logo')->move(public_path('uploads/'), $final_name);
+
+            $obj->logo = $final_name;
+        }
+
+        $obj->company_name = $request->company_name;
+        $obj->contact_person = $request->contact_person;
+        $obj->username = $request->username;
+        $obj->email = $request->email;
+        $obj->phone = $request->phone;
+        $obj->address = $request->address;
+        $obj->company_location_id = $request->company_location_id;
+        $obj->company_industry_id = $request->company_industry_id;
+        $obj->company_size_id = $request->company_size_id;
+        $obj->founded_on = $request->founded_on;
+        $obj->website = $request->website;
+        $obj->description = $request->description;
+        $obj->opening_hour_mon = $request->opening_hour_mon;
+        $obj->opening_hour_tue = $request->opening_hour_tue;
+        $obj->opening_hour_wed = $request->opening_hour_wed;
+        $obj->opening_hour_thu = $request->opening_hour_thu;
+        $obj->opening_hour_fri = $request->opening_hour_fri;
+        $obj->opening_hour_sat = $request->opening_hour_sat;
+        $obj->opening_hour_sun = $request->opening_hour_sun;
+        $obj->map_code = $request->map_code;
+        $obj->facebook = $request->facebook;
+        $obj->twitter = $request->twitter;
+        $obj->linkedin = $request->linkedin;
+        $obj->instagram = $request->instagram;
+        $obj->update();
+
+        return redirect()->back()->with('success', 'Profile updated successfully');
+    }
+
+    public function photos()
+    {
+        // Check if a person have active package in order table
+        $order_data = Order::where('company_id', Auth::guard('company')->user()->id)->where('currently_active', 1)->first();
+
+        if (!$order_data) {
+            return redirect()->back()->with('error', 'You must first buy a package in order to access this page');
+        }
+
+        $package_data = Package::where('id', $order_data->package_id)->first();
+
+        if ($package_data->total_allowed_photos == 0) {
+            return redirect()->back()->with('error', 'Your current package does not cover photo subscription');
+        }
+
+
+        $photos = CompanyPhoto::where('company_id', Auth::guard('company')->user()->id)->get();
+        return view('company.photos', compact('photos'));
+    }
+
+    public function submit_photos(Request $request)
+    {
+        $order_data = Order::where('company_id', Auth::guard('company')->user()->id)->where('currently_active', 1)->first();
+
+        $package_data = Package::where('id', $order_data->package_id)->first();
+
+        $existing_photo_count = CompanyPhoto::where('company_id', Auth::guard('company')->user()->id)->count();
+
+        if ($package_data->total_allowed_photos == $existing_photo_count) {
+            return redirect()->back()->with('error', 'Maximum number of allowed photos reached. Upgrade your package to upload more photos');
+        }
+
+        $obj = new CompanyPhoto();
+
+        $request->validate([
+            'photo' => 'required|image|mimes:jpg,jpeg,png,gif',
+        ]);
+
+        // Image processing
+        $ext = $request->file('photo')->extension();
+        $final_name = 'company_photo_' . time() . '.' . $ext;
+        $request->file('photo')->move(public_path('uploads/'), $final_name);
+
+        $obj->photo = $final_name;
+        $obj->company_id = Auth::guard('company')->user()->id;
+        $obj->save();
+
+        return redirect()->back()->with('success', 'Photo saved successfully');
+    }
+
+    public function delete_photos($id)
+    {
+        $single_data = CompanyPhoto::where('id', $id)->first();
+        if (file_exists(public_path('uploads/' . $single_data->photo)) && !empty($single_data->photo)) {
+            unlink(public_path('uploads/' . $single_data->photo));
+        }
+        $single_data->delete();
+
+        return redirect()->back()->with('success', 'Photo deleted successfully');
     }
 
     public function make_payment()
