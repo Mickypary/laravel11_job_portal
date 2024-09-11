@@ -1866,3 +1866,7 @@ ul.pagination .page-link.active {
 ul.pagination .page-link {
     color: #46bc29;
 }
+
+.datepicker-dropdown {
+    z-index: 99999 !important;
+}

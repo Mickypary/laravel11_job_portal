@@ -45,6 +45,13 @@
 
                         <h4 class="mt-4">Existing Photos</h4>
                         <div class="photo-all">
+                            @if($photos->count() == 0)
+                            <class class="row">
+                                <class class="col-md-6 col-lg-3">
+                                <span class="text-danger">No photo uploaded</span>
+                                </class>
+                            </class> 
+                            @else
                             <div class="row">
                               @foreach($photos as $item)
                                 <div class="col-md-6 col-lg-3">
@@ -60,8 +67,8 @@
                                     <a href="{{ route('company_photos_delete', $item->id) }}" class="btn btn-danger btn-sm mb-3" onclick="return confirm('Are you sure?')">Delete</a>
                                 </div>
                                 @endforeach
-
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -323,9 +323,26 @@ Route::middleware(['company:company', 'prevent-back-history'])->group(function (
   Route::post('company/profile/update', [CompanyController::class, 'update_profile'])->name('company_update_profile');
 
 
+  Route::get('company/change-password', [CompanyController::class, 'change_password'])->name('company_change_password');
+  Route::post('company/password/update', [CompanyController::class, 'update_password'])->name('company_update_password');
+
+
   Route::get('company/photos', [CompanyController::class, 'photos'])->name('company_photos');
   Route::post('company/photos/submit', [CompanyController::class, 'submit_photos'])->name('company_photos_submit');
   Route::get('company/photos/delete/{id}', [CompanyController::class, 'delete_photos'])->name('company_photos_delete');
+
+
+  Route::get('company/videos', [CompanyController::class, 'videos'])->name('company_videos');
+  Route::post('company/videos/submit', [CompanyController::class, 'submit_videos'])->name('company_videos_submit');
+  Route::get('company/videos/delete/{id}', [CompanyController::class, 'delete_videos'])->name('company_videos_delete');
+
+
+  Route::get('company/create-job', [CompanyController::class, 'create_job'])->name('company_create_job');
+  Route::post('company/create-job-submit', [CompanyController::class, 'create_job_submit'])->name('company_create_job_submit');
+  Route::get('company/jobs', [CompanyController::class, 'jobs'])->name('company_jobs');
+  Route::get('company/edit-job/{id}', [CompanyController::class, 'edit_job'])->name('company_job_edit');
+  Route::post('company/update-job/{id}', [CompanyController::class, 'update_job'])->name('company_job_update');
+  Route::get('company/delete-job/{id}', [CompanyController::class, 'delete_job'])->name('company_job_delete');
 });
 
 

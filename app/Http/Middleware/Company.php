@@ -17,6 +17,7 @@ class Company
     {
         // Auth::guard($guard)->check()
         if (auth()->guard($guard)->check()) {
+            // dd('name mismatch', $request->route()->getName(),);
             return $next($request);
         }
 

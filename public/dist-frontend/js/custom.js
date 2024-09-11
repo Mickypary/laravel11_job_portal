@@ -127,11 +127,13 @@
 
     tinymce.init({
         selector: ".editor",
+        plugins: "lists",
+        toolbar: "numlist bullist",
         height: "300",
     });
 
     $(".datepicker").datepicker({
         format: "yyyy-mm-dd",
-        todayHighlight: true
+        todayHighlight: true,
     });
 })(jQuery);

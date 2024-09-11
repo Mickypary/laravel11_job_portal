@@ -15,13 +15,25 @@ use App\Models\CompanyLocation;
 use App\Models\CompanySize;
 use App\Models\CompanyIndustry;
 use App\Models\CompanyPhoto;
+use App\Models\CompanyVideo;
+use App\Models\Job;
+use App\Models\JobCategory;
+use App\Models\JobLocation;
+use App\Models\JobType;
+use App\Models\JobGender;
+use App\Models\JobSalaryRange;
+use App\Models\JobExperience;
+use Illuminate\Support\Facades\Hash;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class CompanyController extends Controller
 {
     public function dashboard()
     {
-        return view('company.dashboard');
+        $total_open_jobs = Job::where('company_id', Auth::guard('company')->user()->id)->count();
+        $total_featured_jobs = Job::where('is_featured', 1)->where('company_id', Auth::guard('company')->user()->id)->count();
+        $jobs = Job::with('rJobCategory')->where('company_id', Auth::guard('company')->user()->id)->orderBy('id', 'desc')->take(2)->get();
+        return view('company.dashboard', compact('jobs', 'total_open_jobs', 'total_featured_jobs'));
     }
 
     public function orders()
@@ -96,6 +108,27 @@ class CompanyController extends Controller
         return redirect()->back()->with('success', 'Profile updated successfully');
     }
 
+    public function change_password()
+    {
+        return view('company.change_password');
+    }
+
+    public function update_password(Request $request)
+    {
+        $request->validate([
+            'password' => 'required',
+            'confirm_password' => 'required|same:password',
+        ]);
+
+        $data = [
+            'password' => Hash::make($request->password),
+        ];
+
+        Company::where('id', Auth::guard('company')->user()->id)->update($data);
+
+        return redirect()->back()->with('success', 'Password updated successfully');
+    }
+
     public function photos()
     {
         // Check if a person have active package in order table
@@ -156,6 +189,72 @@ class CompanyController extends Controller
 
         return redirect()->back()->with('success', 'Photo deleted successfully');
     }
+
+
+    public function videos()
+    {
+        // Check if a person have active package in order table
+        $order_data = Order::where('company_id', Auth::guard('company')->user()->id)->where('currently_active', 1)->first();
+
+        if (!$order_data) {
+            return redirect()->back()->with('error', 'You must first buy a package in order to access this page');
+        }
+
+        $package_data = Package::where('id', $order_data->package_id)->first();
+
+        if ($package_data->total_allowed_photos == 0) {
+            return redirect()->back()->with('error', 'Your current package does not cover video subscription');
+        }
+
+
+        $videos = CompanyVideo::where('company_id', Auth::guard('company')->user()->id)->get();
+        return view('company.videos', compact('videos'));
+    }
+
+
+    public function submit_videos(Request $request)
+    {
+        $order_data = Order::where('company_id', Auth::guard('company')->user()->id)->where('currently_active', 1)->first();
+
+        $package_data = Package::where('id', $order_data->package_id)->first();
+
+        $existing_video_count = CompanyVideo::where('company_id', Auth::guard('company')->user()->id)->count();
+
+        if ($package_data->total_allowed_videos == $existing_video_count) {
+            return redirect()->back()->with('error', 'Maximum number of allowed videos reached. Upgrade your package to upload more vudeos');
+        }
+
+        $obj = new CompanyVideo();
+
+        $request->validate([
+            'video_url' => 'required',
+        ]);
+
+        $obj->video_url = $request->video_url;
+        $obj->company_id = Auth::guard('company')->user()->id;
+        $obj->save();
+
+        return redirect()->back()->with('success', 'Video saved successfully');
+    }
+
+
+    public function delete_videos($id)
+    {
+        $single_data = CompanyVideo::where('id', $id)->first();
+        $single_data->delete();
+
+        return redirect()->back()->with('success', 'Video deleted successfully');
+    }
+
+
+
+
+
+
+
+
+
+
 
     public function make_payment()
     {
@@ -327,5 +426,161 @@ class CompanyController extends Controller
     public function stripe_cancel()
     {
         return redirect()->route('company_make_payment')->with('error', 'Payment cancelled. Please try again!');
+    }
+
+
+
+    public function create_job()
+    {
+        // Check if a person have active package in order table
+        $order_data = Order::where('company_id', Auth::guard('company')->user()->id)->where('currently_active', 1)->first();
+
+        if (!$order_data) {
+            return redirect()->back()->with('error', 'You must first buy a package in order to access this page');
+        }
+
+        $package_data = Package::where('id', $order_data->package_id)->first();
+
+        if ($package_data->total_allowed_jobs == 0) {
+            return redirect()->back()->with('error', 'Your current package does not cover job posting');
+        }
+
+        $total_job_post = Job::where('company_id', Auth::guard('company')->user()->id)->count();
+        if ($package_data->total_allowed_jobs == $total_job_post) {
+            return redirect()->back()->with('error', 'Maximum number of allowed jobs reached. Upgrade your package to post more jobs');
+        }
+
+        $job_categories = JobCategory::orderBy('name', 'asc')->get();
+        $job_locations = JobLocation::orderBy('name', 'asc')->get();
+        $job_types = JobType::orderBy('name', 'asc')->get();
+        $job_experiences = JobExperience::orderBy('id', 'asc')->get();
+        $job_genders = JobGender::orderBy('id', 'asc')->get();
+        $job_salary_ranges = JobSalaryRange::orderBy('id', 'asc')->get();
+        return view('company.create_job', compact('job_categories', 'job_locations', 'job_types', 'job_experiences', 'job_genders', 'job_salary_ranges'));
+    }
+
+    public function create_job_submit(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'deadline' => 'required',
+            'vacancy' => 'required',
+        ]);
+
+        $order_data = Order::where('company_id', Auth::guard('company')->user()->id)->where('currently_active', 1)->first();
+
+        $package_data = Package::where('id', $order_data->package_id)->first();
+
+        $total_featured_jobs = Job::where('company_id', Auth::guard('company')->user()->id)->where('is_featured', 1)->count();
+
+
+        if ($total_featured_jobs == $package_data->total_allowed_featured_jobs) {
+            if ($request->is_featured) {
+                return redirect()->back()->with('error', 'Maximum number of allowed featured jobs reached. Upgrade your package to post more featured jobs');
+            }
+        }
+
+
+        $obj = new Job();
+        $obj->company_id = Auth::guard('company')->user()->id;
+        $obj->title = $request->title;
+        $obj->description = $request->description;
+        $obj->responsibility = $request->responsibility;
+        $obj->skill = $request->skill;
+        $obj->education = $request->education;
+        $obj->benefit = $request->benefit;
+        $obj->deadline = $request->deadline;
+        $obj->vacancy = $request->vacancy;
+        $obj->job_category_id = $request->job_category_id;
+        $obj->job_location_id = $request->job_location_id;
+        $obj->job_type_id = $request->job_type_id;
+        $obj->job_experience_id = $request->job_experience_id;
+        $obj->job_gender_id = $request->job_gender_id;
+        $obj->job_salary_range_id = $request->job_salary_range_id;
+        $obj->map_code = $request->map_code;
+        $obj->is_featured = $request->is_featured;
+        $obj->is_urgent = $request->is_urgent;
+
+        $obj->save();
+
+        return redirect()->back()->with('success', 'Job posted successfully');
+    }
+
+    public function jobs()
+    {
+        $jobs = Job::with('rJobCategory')->where('company_id', Auth::guard('company')->user()->id)->get();
+        return view('company.jobs', compact('jobs'));
+    }
+
+    public function edit_job($id)
+    {
+        $job_categories = JobCategory::orderBy('name', 'asc')->get();
+        $job_locations = JobLocation::orderBy('name', 'asc')->get();
+        $job_types = JobType::orderBy('name', 'asc')->get();
+        $job_experiences = JobExperience::orderBy('id', 'asc')->get();
+        $job_genders = JobGender::orderBy('id', 'asc')->get();
+        $job_salary_ranges = JobSalaryRange::orderBy('id', 'asc')->get();
+
+
+        $single_job = Job::where('id', $id)->where('company_id', Auth::guard('company')->user()->id)->first();
+        // dd($single_job);
+        return view('company.edit_job', compact('single_job', 'job_categories', 'job_locations', 'job_types', 'job_experiences', 'job_genders', 'job_salary_ranges'));
+    }
+
+    public function update_job(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'deadline' => 'required',
+            'vacancy' => 'required',
+        ]);
+
+        // $order_data = Order::where('company_id', Auth::guard('company')->user()->id)->where('currently_active', 1)->first();
+
+        // $package_data = Package::where('id', $order_data->package_id)->first();
+
+        // $total_featured_jobs = Job::where('company_id', Auth::guard('company')->user()->id)->where('is_featured', 1)->count();
+
+
+        // if ($total_featured_jobs == $package_data->total_allowed_featured_jobs) {
+        //     if ($request->is_featured) {
+        //         return redirect()->back()->with('error', 'Maximum number of allowed featured jobs reached. Upgrade your package to post more featured jobs');
+        //     }
+        // }
+
+
+        $obj = Job::where('id', $id)->where('company_id', Auth::guard('company')->user()->id)->first();
+
+        $obj->title = $request->title;
+        $obj->description = $request->description;
+        $obj->responsibility = $request->responsibility;
+        $obj->skill = $request->skill;
+        $obj->education = $request->education;
+        $obj->benefit = $request->benefit;
+        $obj->deadline = $request->deadline;
+        $obj->vacancy = $request->vacancy;
+        $obj->job_category_id = $request->job_category_id;
+        $obj->job_location_id = $request->job_location_id;
+        $obj->job_type_id = $request->job_type_id;
+        $obj->job_experience_id = $request->job_experience_id;
+        $obj->job_gender_id = $request->job_gender_id;
+        $obj->job_salary_range_id = $request->job_salary_range_id;
+        $obj->map_code = $request->map_code;
+        $obj->is_featured = $request->is_featured;
+        $obj->is_urgent = $request->is_urgent;
+
+        $obj->update();
+
+        return redirect()->back()->with('success', 'Job updated successfully');
+    }
+
+    public function delete_job($id)
+    {
+
+        Job::where('id', $id)->delete();
+
+        return redirect()->route('company_jobs')->with('success', 'Job deleted successfully');
     }
 }
