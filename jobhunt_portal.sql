@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2024 at 02:36 AM
+-- Generation Time: Sep 11, 2024 at 09:18 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -151,11 +151,11 @@ CREATE TABLE IF NOT EXISTS `companies` (
   `logo` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
-  `country` varchar(255) DEFAULT NULL,
-  `website` varchar(255) DEFAULT NULL,
-  `company_size` varchar(255) DEFAULT NULL,
+  `company_location_id` int(11) DEFAULT NULL,
+  `company_industry_id` int(11) DEFAULT NULL,
+  `company_size_id` int(11) DEFAULT NULL,
   `founded_on` varchar(255) DEFAULT NULL,
-  `industry_id` int(11) DEFAULT NULL,
+  `website` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `opening_hour_mon` varchar(255) DEFAULT NULL,
   `opening_hour_tue` varchar(255) DEFAULT NULL,
@@ -173,14 +173,16 @@ CREATE TABLE IF NOT EXISTS `companies` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `companies`
 --
 
-INSERT INTO `companies` (`id`, `company_name`, `contact_person`, `username`, `email`, `password`, `token`, `logo`, `phone`, `address`, `country`, `website`, `company_size`, `founded_on`, `industry_id`, `description`, `opening_hour_mon`, `opening_hour_tue`, `opening_hour_wed`, `opening_hour_thu`, `opening_hour_fri`, `opening_hour_sat`, `opening_hour_sun`, `map_code`, `facebook`, `twitter`, `linkedin`, `instagram`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Grenville Schools', 'Damilola Babalola', 'grenville', 'info@grenvilleschool.com', '$2y$12$JVo1T1CHwaZYDQXae5GbMOHXQ3z01ZtafUmyeNHgYsfBong0bmJAq', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-08-19 12:49:17', '2024-08-21 19:46:20');
+INSERT INTO `companies` (`id`, `company_name`, `contact_person`, `username`, `email`, `password`, `token`, `logo`, `phone`, `address`, `company_location_id`, `company_industry_id`, `company_size_id`, `founded_on`, `website`, `description`, `opening_hour_mon`, `opening_hour_tue`, `opening_hour_wed`, `opening_hour_thu`, `opening_hour_fri`, `opening_hour_sat`, `opening_hour_sun`, `map_code`, `facebook`, `twitter`, `linkedin`, `instagram`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Grenville Schools', 'Damilola Babalola', 'grenville', 'info@grenvilleschool.com', '$2y$12$MaJhEzS9dcqFy2ZwxLcwTu.eqzcBYnuTVOpKjd/9teylMnqZfcgSi', '', 'company_logo_1725303542.png', '09062684833', '18 Ladoke Akintola Street GRA Ikeja Lagos', 6, 1, 6, '2012', 'https://www.grenvilleschool.com', '<p><span style=\"color: #808080; font-family: Poppins, sans-serif; font-size: 15px; background-color: #ffffff;\">A premier educational institution dedicated to providing a transformative and enjoyable learning experience. As a distinguished choice for students aged 6 months to 18 years, Grenville School is committed to excellence.</span></p>', '9:00 AM to 5:00 PM', '9:00 AM to 5:00 PM', '9:00 AM to 5:00 PM', '9:00 AM to 5:00 PM', '9:00 AM to 5:00 PM', 'Off day', 'Off day', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.5108194467566!2d3.3511325744808373!3d6.5832415224673015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b9216e51ceb85%3A0x22242cc8658e2b19!2sGRENVILLE%20SCHOOLS!5e0!3m2!1sen!2sng!4v1725304224091!5m2!1sen!2sng\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 'https://www.facebook.com/grenville_sch', NULL, NULL, NULL, 1, '2024-08-19 12:49:17', '2024-09-03 20:21:28'),
+(2, 'ABC Media Ltd.', 'James O\'neil', 'james', 'james@gmail.com', '$2y$12$/7XMREMDbidZz.XA/SzcGeFyNTHIRAMtYu4hIExPrPybtoiAOUEjG', '', NULL, '123456', '12, KBC Street, NYC, USA', 3, 1, 1, '1900', 'https://www.mrichtech.com', '<p>His cu nobis populo, eum laoreet evertitur te. In tollit audire adolescens vix. Ad veri admodum quo. Ea pri cetero timeam probatus, dicunt principes vel ut.</p>', '9:00 AM to 5:00 PM', '9:00 AM to 5:00 PM', '9:00 AM to 5:00 PM', '9:00 AM to 5:00 PM', '9:00 AM to 5:00 PM', '9:00 AM to 5:00 PM', '9:00 AM to 5:00 PM', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387190.2799198932!2d-74.25987701513004!3d40.69767006272707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1645362221879!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border: 0\" allowfullscreen=\"\" loading=\"lazy\"></iframe>', 'https://www.facebook.com/', 'https://www.twitter.com/', 'https://www.linkedin.com/', 'https://www.instagram.com/', 1, '2024-09-02 19:58:49', '2024-09-02 20:12:39'),
+(3, 'Test', 'test', 'test', 'test@gmail.com', '$2y$12$6LisQLvj2tj9o9MJZsswTeIj/EYLNVQT1/ysXhQSUrth9xl5.CzG.', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2024-09-02 21:04:05', '2024-09-02 21:04:18');
 
 -- --------------------------------------------------------
 
@@ -236,6 +238,33 @@ INSERT INTO `company_locations` (`id`, `name`, `created_at`, `updated_at`) VALUE
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `company_photos`
+--
+
+CREATE TABLE IF NOT EXISTS `company_photos` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) NOT NULL,
+  `photo` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `company_photos`
+--
+
+INSERT INTO `company_photos` (`id`, `company_id`, `photo`, `created_at`, `updated_at`) VALUES
+(1, 1, 'company_photo_1725306957.jpg', '2024-09-02 19:55:57', '2024-09-02 19:55:57'),
+(5, 2, 'company_photo_1725307730.png', '2024-09-02 20:08:50', '2024-09-02 20:08:50'),
+(7, 1, 'company_photo_1725309372.png', '2024-09-02 20:36:12', '2024-09-02 20:36:12'),
+(8, 1, 'company_photo_1725312036.jpg', '2024-09-02 21:20:36', '2024-09-02 21:20:36'),
+(9, 1, 'company_photo_1725312097.png', '2024-09-02 21:21:37', '2024-09-02 21:21:37'),
+(10, 1, 'company_photo_1725312115.jpg', '2024-09-02 21:21:55', '2024-09-02 21:21:55');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `company_sizes`
 --
 
@@ -258,6 +287,29 @@ INSERT INTO `company_sizes` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (4, '20-50 Persons', '2024-08-28 00:34:13', '2024-08-28 00:34:13'),
 (5, '50-100 Persons', '2024-08-28 00:34:29', '2024-08-28 00:34:29'),
 (6, '100+ Persons', '2024-08-28 00:34:46', '2024-08-28 00:35:04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company_videos`
+--
+
+CREATE TABLE IF NOT EXISTS `company_videos` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) NOT NULL,
+  `video_url` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `company_videos`
+--
+
+INSERT INTO `company_videos` (`id`, `company_id`, `video_url`, `created_at`, `updated_at`) VALUES
+(2, 1, 'LmF75-QFxLE', '2024-09-03 15:27:10', '2024-09-03 15:27:10'),
+(3, 1, 'VS6aQoH3Xow', '2024-09-03 19:59:38', '2024-09-03 19:59:38');
 
 -- --------------------------------------------------------
 
@@ -403,15 +455,37 @@ INSERT INTO `home_page_items` (`id`, `heading`, `text`, `job_title`, `job_catego
 
 CREATE TABLE IF NOT EXISTS `jobs` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `queue` varchar(255) NOT NULL,
-  `payload` longtext NOT NULL,
-  `attempts` tinyint(3) UNSIGNED NOT NULL,
-  `reserved_at` int(10) UNSIGNED DEFAULT NULL,
-  `available_at` int(10) UNSIGNED NOT NULL,
-  `created_at` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `jobs_queue_index` (`queue`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `company_id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `description` text NOT NULL,
+  `responsibility` text DEFAULT NULL,
+  `skill` text DEFAULT NULL,
+  `education` text DEFAULT NULL,
+  `benefit` text DEFAULT NULL,
+  `deadline` text NOT NULL,
+  `vacancy` int(11) NOT NULL,
+  `job_category_id` int(11) NOT NULL,
+  `job_location_id` int(11) NOT NULL,
+  `job_type_id` int(11) NOT NULL,
+  `job_experience_id` int(11) NOT NULL,
+  `job_gender_id` int(11) NOT NULL,
+  `job_salary_range_id` int(11) NOT NULL,
+  `map_code` text DEFAULT NULL,
+  `is_featured` tinyint(4) NOT NULL,
+  `is_urgent` tinyint(4) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `jobs`
+--
+
+INSERT INTO `jobs` (`id`, `company_id`, `title`, `description`, `responsibility`, `skill`, `education`, `benefit`, `deadline`, `vacancy`, `job_category_id`, `job_location_id`, `job_type_id`, `job_experience_id`, `job_gender_id`, `job_salary_range_id`, `map_code`, `is_featured`, `is_urgent`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Software Engineer', '<p>We are looking for a motivated PHP / Laravel developer to come join our agile team of professionals. If you are passionate about technology, constantly seeking to learn and improve your skillset, then you are the type of person we are looking for! We are offering superb career growth opportunities, great compensation, and benefits.</p>', '<ul>\r\n<li>Develop, record and maintain cutting edge web-based PHP applications on portal plus premium service platforms</li>\r\n<li>Build innovative, state-of-the-art applications and collaborate with the User Experience (UX) team</li>\r\n<li>Ensure HTML, CSS, and shared JavaScript is valid and consistent across applications</li>\r\n<li>Prepare and maintain all applications utilizing standard development tools</li>\r\n<li>Utilize backend data services and contribute to increase existing data services API</li>\r\n<li>Lead the entire web application development life cycle right from concept stage to delivery and post launch support</li>\r\n</ul>', '<ul>\r\n<li>Previous working experience as a PHP / Laravel developer for 4 year(s)</li>\r\n<li>BS/MS degree in Computer Science, Engineering, MIS or similar relevant field</li>\r\n<li>In depth knowledge of object-oriented PHP and Laravel PHP Framework</li>\r\n<li>Hands on experience with SQL schema design, SOLID principles, REST API design</li>\r\n<li>Software testing (PHPUnit, PHPSpec, Behat)</li>\r\n<li>MySQL profiling and query optimization</li>\r\n<li>Creative and efficient problem solver</li>\r\n</ul>', '<ul>\r\n<li>B.Sc. in CSE from any reputed University</li>\r\n<li>CGPA minimum 3.50</li>\r\n</ul>', '<ul>\r\n<li>Early finish on Fridays for our end of week catch up (4:30 finish, and drink of your choice from the bar)</li>\r\n<li>28 days holiday(including bank holidays) rising by 1 day per year PLUS an additional day off on your birthday</li>\r\n<li>Generous annual bonus.</li>\r\n<li>Healthcare package</li>\r\n<li>Free Breakfast on Mondays and free snacks in the office</li>\r\n<li>Cycle 2 Work Scheme</li>\r\n<li>Brand new MacBook Pro</li>\r\n</ul>', '2024-09-30', 2, 1, 1, 1, 3, 3, 3, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d184551.90977207685!2d-79.54286797110717!3d43.71837095825704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4cb90d7c63ba5%3A0x323555502ab4c477!2sToronto%2C%20ON%2C%20Canada!5e0!3m2!1sen!2sng!4v1725404838410!5m2!1sen!2sng\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 1, 1, '2024-09-03 23:08:06', '2024-09-11 18:51:30'),
+(2, 1, 'Web Designer 098765', '<p>We are looking for a motivated PHP / Laravel developer to come join our agile team of professionals. If you are passionate about technology, constantly seeking to learn and improve your skillset, then you are the type of person we are looking for! We are offering superb career growth opportunities, great compensation, and benefits.</p>', '<ul>\r\n<li>Develop, record and maintain cutting edge web-based PHP applications on portal plus premium service platforms</li>\r\n<li>Build innovative, state-of-the-art applications and collaborate with the User Experience (UX) team</li>\r\n<li>Ensure HTML, CSS, and shared JavaScript is valid and consistent across applications</li>\r\n<li>Prepare and maintain all applications utilizing standard development tools</li>\r\n<li>Utilize backend data services and contribute to increase existing data services API</li>\r\n<li>Lead the entire web application development life cycle right from concept stage to delivery and post launch support</li>\r\n</ul>', '<ul>\r\n<li>Previous working experience as a PHP / Laravel developer for 4 year(s)</li>\r\n<li>BS/MS degree in Computer Science, Engineering, MIS or similar relevant field</li>\r\n<li>In depth knowledge of object-oriented PHP and Laravel PHP Framework</li>\r\n<li>Hands on experience with SQL schema design, SOLID principles, REST API design</li>\r\n<li>Software testing (PHPUnit, PHPSpec, Behat)</li>\r\n<li>MySQL profiling and query optimization</li>\r\n<li>Creative and efficient problem solver</li>\r\n</ul>', '<ul>\r\n<li>B.Sc. in CSE from any reputed University</li>\r\n<li>CGPA minimum 3.50</li>\r\n</ul>', '<ul>\r\n<li>Early finish on Fridays for our end of week catch up (4:30 finish, and drink of your choice from the bar)</li>\r\n<li>28 days holiday(including bank holidays) rising by 1 day per year PLUS an additional day off on your birthday</li>\r\n<li>Generous annual bonus.</li>\r\n<li>Healthcare package</li>\r\n<li>Free Breakfast on Mondays and free snacks in the office</li>\r\n<li>Cycle 2 Work Scheme</li>\r\n<li>Brand new MacBook Pro</li>\r\n</ul>', '2024-09-04', 1, 1, 3, 2, 2, 1, 2, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52891323.64355656!2d-161.7572472789203!3d35.990241455780485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited%20States!5e0!3m2!1sen!2sng!4v1725485743759!5m2!1sen!2sng\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 1, 0, '2024-09-04 21:36:48', '2024-09-10 14:24:22'),
+(3, 1, 'PHP Developer', '<p>We are looking for a motivated PHP / Laravel developer to come join our agile team of professionals. If you are passionate about technology, constantly seeking to learn and improve your skillset, then you are the type of person we are looking for! We are offering superb career growth opportunities, great compensation, and benefits.</p>', '<ul>\r\n<li>Develop, record and maintain cutting edge web-based PHP applications on portal plus premium service platforms</li>\r\n<li>Build innovative, state-of-the-art applications and collaborate with the User Experience (UX) team</li>\r\n<li>Ensure HTML, CSS, and shared JavaScript is valid and consistent across applications</li>\r\n<li>Prepare and maintain all applications utilizing standard development tools</li>\r\n<li>Utilize backend data services and contribute to increase existing data services API</li>\r\n<li>Lead the entire web application development life cycle right from concept stage to delivery and post launch support</li>\r\n</ul>', '<ul>\r\n<li>Previous working experience as a PHP / Laravel developer for 4 year(s)</li>\r\n<li>BS/MS degree in Computer Science, Engineering, MIS or similar relevant field</li>\r\n<li>In depth knowledge of object-oriented PHP and Laravel PHP Framework</li>\r\n<li>Hands on experience with SQL schema design, SOLID principles, REST API design</li>\r\n<li>Software testing (PHPUnit, PHPSpec, Behat)</li>\r\n<li>MySQL profiling and query optimization</li>\r\n<li>Creative and efficient problem solver</li>\r\n</ul>', '<ul>\r\n<li>B.Sc. in CSE from any reputed University</li>\r\n<li>CGPA minimum 3.50</li>\r\n</ul>', '<ul>\r\n<li>Early finish on Fridays for our end of week catch up (4:30 finish, and drink of your choice from the bar)</li>\r\n<li>28 days holiday(including bank holidays) rising by 1 day per year PLUS an additional day off on your birthday</li>\r\n<li>Generous annual bonus.</li>\r\n<li>Healthcare package</li>\r\n<li>Free Breakfast on Mondays and free snacks in the office</li>\r\n<li>Cycle 2 Work Scheme</li>\r\n<li>Brand new MacBook Pro</li>\r\n</ul>', '2024-10-09', 3, 8, 5, 1, 1, 1, 1, NULL, 0, 0, '2024-09-04 21:50:55', '2024-09-04 21:50:55');
 
 -- --------------------------------------------------------
 
@@ -633,7 +707,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -671,7 +745,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (30, '2024_08_27_220448_create_job_salary_ranges_table', 27),
 (31, '2024_08_27_233355_create_company_locations_table', 28),
 (32, '2024_08_28_005056_create_company_industries_table', 29),
-(33, '2024_08_28_010752_create_company_sizes_table', 30);
+(33, '2024_08_28_010752_create_company_sizes_table', 30),
+(34, '2024_09_02_202901_create_company_photos_table', 31),
+(35, '2024_09_03_153654_create_company_videos_table', 32),
+(36, '2024_09_03_212925_create_jobs_table', 33);
 
 -- --------------------------------------------------------
 
@@ -692,7 +769,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `orders`
@@ -703,7 +780,9 @@ INSERT INTO `orders` (`id`, `company_id`, `package_id`, `order_no`, `paid_amount
 (2, 1, 2, '1724613211', '29', 'PayPal', '2024-08-25', '2024-09-24', 0, '2024-08-25 19:13:31', '2024-08-25 19:15:13'),
 (3, 1, 1, '1724613313', '19', 'PayPal', '2024-08-25', '2024-09-01', 0, '2024-08-25 19:15:13', '2024-08-27 15:11:56'),
 (4, 1, 2, '1724771516', '29', 'Stripe', '2024-08-27', '2024-09-26', 0, '2024-08-27 15:11:56', '2024-08-27 15:47:17'),
-(5, 1, 1, '1724773637', '19', 'Stripe', '2024-08-27', '2024-09-03', 1, '2024-08-27 15:47:17', '2024-08-27 15:47:17');
+(5, 1, 1, '1724773637', '19', 'Stripe', '2024-08-27', '2024-09-03', 0, '2024-08-27 15:47:17', '2024-09-02 21:13:53'),
+(6, 2, 2, '1725310823', '29', 'PayPal', '2024-09-02', '2024-10-02', 1, '2024-09-02 21:00:23', '2024-09-02 21:00:23'),
+(7, 1, 2, '1725311633', '29', 'PayPal', '2024-09-02', '2024-10-02', 1, '2024-09-02 21:13:53', '2024-09-02 21:13:53');
 
 -- --------------------------------------------------------
 
@@ -760,8 +839,8 @@ CREATE TABLE IF NOT EXISTS `packages` (
 --
 
 INSERT INTO `packages` (`id`, `package_name`, `package_price`, `package_days`, `package_display_time`, `total_allowed_jobs`, `total_allowed_featured_jobs`, `total_allowed_photos`, `total_allowed_videos`, `created_at`, `updated_at`) VALUES
-(1, 'Basic', 19, 7, '1 Week', 5, 0, 0, 0, '2024-08-17 22:32:38', '2024-08-17 22:49:40'),
-(2, 'Standard', 29, 30, '1 Month', 15, 5, 5, 2, '2024-08-17 22:34:12', '2024-08-17 22:34:12'),
+(1, 'Basic', 19, 7, '1 Week', 2, 0, 0, 0, '2024-08-17 22:32:38', '2024-09-04 19:57:57'),
+(2, 'Standard', 29, 30, '1 Month', 4, 2, 5, 2, '2024-08-17 22:34:12', '2024-09-04 21:37:59'),
 (3, 'Gold', 49, 60, '2 Month', -1, 15, 15, 10, '2024-08-17 22:37:21', '2024-08-17 22:37:21');
 
 -- --------------------------------------------------------
@@ -809,7 +888,7 @@ INSERT INTO `posts` (`id`, `heading`, `slug`, `short_description`, `description`
 (4, 'Eos cu impetus expetenda, has no equidem saperet.', 'eos-cu-impetus-expetenda', 'Tritani dolorum salutandi cum in. Ea ius nostro vidisse hendrerit. Fabulas scaevola explicari et eam, per vide utinam contentiones id. At corrumpit mnesarchum duo, ad nisl verear equidem vel.', '<p>Tritani dolorum salutandi cum in. Ea ius nostro vidisse hendrerit. Fabulas scaevola explicari et eam, per vide utinam contentiones id. At corrumpit mnesarchum duo, ad nisl verear equidem vel. Mediocrem sadipscing vis id, no singulis interpretaris mel, mea no vocent detraxit. Labitur civibus vim id, sensibus salutandi his ei.</p>\r\n<p>Eam ut erant tibique suscipiantur. Nec stet sonet an, vim natum senserit deterruisset ut, nihil labitur adolescens ut per. Nam quem quod sadipscing ex. Doctus imperdiet duo ea, zril argumentum persequeris his ut.</p>\r\n<p>Ea reformidans consequuntur his, ad sed laudem diceret iudicabit. Te mel liber luptatum, unum natum impedit vis ad. Et erant utinam argumentum vim, audire percipitur ex sit. Numquam similique ea est.</p>\r\n<p>Mei veniam instructior ei. Vix ut imperdiet omittantur, no pro legere dissentias. Dicunt dissentiunt mediocritatem has at, sea at esse accommodare. Doctus mentitum ocurreret eu pri, qui at dictas epicurei concludaturque. Usu ea hinc noster singulis, usu hinc doctus corpora ad, dicta aeterno id vix.</p>\r\n<p>Id vide regione nostrum has, nec dicam labitur praesent ne. Rebum insolens no vix, cu nec verear discere. Graeco apeirian eos ex. Id elitr vocibus assueverit est. Est voluptua invidunt suscipiantur te. Usu delenit minimum ne.</p>', '3', 'post_1723483824.jpg', 'Eos cu impetus expetenda', 'Eos cu impetus expetenda', '2024-08-12 17:30:24', '2024-08-14 20:38:44'),
 (5, 'An ius verear volupmolesti', 'an-ius-verear-voluptatibus', 'Tale augue mei et. Postea timeam delenit quo te, aliquip percipit abhorreant pri in. Te usu vidit qualisque disputationi, primis laboramus necessitatibus qui id. Ne voluptatibus comprehensam vel.', '<p>Tale augue mei et. Postea timeam delenit quo te, aliquip percipit abhorreant pri in. Te usu vidit qualisque disputationi, primis laboramus necessitatibus qui id. Ne voluptatibus comprehensam vel. Ut mea tota impedit, at scripta placerat suscipiantur nam, ea per dolore euismod expetendis. Eu agam ridens vis, no per alia mucius, an oporteat accusamus deterruisset vel.</p>\r\n<p>An ius verear voluptatibus, melius molestiae eum ea. Ridens labores eu vix, ad ignota probatus reprehendunt vis, et malorum disputando pri. Ea iudico petentium mel, prima maiestatis eum te. Fuisset suavitate no eam, et minim eripuit pro, alii adolescens conclusionemque in est. Eu usu adhuc quaeque scaevola.</p>\r\n<p>Eu assum zril ius, mel eu falli primis dolores. Sonet consulatu ei usu. Ad lorem fabulas nonumes pro, modo convenire liberavisse mel ad. Quo dicit omnes no. Audiam senserit cum cu, veri facete pro ad.</p>\r\n<p>Everti argumentum vel ea, ad melius bonorum recusabo mei. Per te vocent laboramus expetendis. No meliore convenire eos. No est facete tibique conclusionemque, qui viris phaedrum senserit ei.</p>\r\n<p>Mollis platonem convenire ut quo. Eam accumsan postulant cu, ut vel unum utinam scripserit, suas purto consetetur his id. Corpora sapientem ne nam. Id maiorum efficiantur per. Quo ne mundi ancillae vituperatoribus, ne eam integre inciderint. Ex probo assum duo.</p>\r\n<p>&nbsp;</p>', '4', 'post_1723483939.jpg', 'An ius verear volupmolesti', 'An ius verear volupmolesti', '2024-08-12 17:32:19', '2024-08-14 20:37:00'),
 (6, 'Eam ut erant tibique suscipiantur. Nec stet sonet an, vim natum senserit deterruisset ut', 'eam-ut-erant-tibique-suscipiantur', 'Has ponderum postulant at, viris qualisque philosophia qui ea, causae percipit iudicabit pri ut.', '<p>Has ponderum postulant at, viris qualisque philosophia qui ea, causae percipit iudicabit pri ut. Justo blandit albucius pro ut, populo nominati quo no. Qui id alterum dolorem interesset, nam ne quod essent. Doming option recteque mei ne, admodum voluptaria ex eos.</p>\r\n<p>Tale augue mei et. Postea timeam delenit quo te, aliquip percipit abhorreant pri in. Te usu vidit qualisque disputationi, primis laboramus necessitatibus qui id. Ne voluptatibus comprehensam vel. Ut mea tota impedit, at scripta placerat suscipiantur nam, ea per dolore euismod expetendis. Eu agam ridens vis, no per alia mucius, an oporteat accusamus deterruisset vel.</p>\r\n<p>An ius verear voluptatibus, melius molestiae eum ea. Ridens labores eu vix, ad ignota probatus reprehendunt vis, et malorum disputando pri. Ea iudico petentium mel, prima maiestatis eum te. Fuisset suavitate no eam, et minim eripuit pro, alii adolescens conclusionemque in est. Eu usu adhuc quaeque scaevola.</p>\r\n<p>Eu assum zril ius, mel eu falli primis dolores. Sonet consulatu ei usu. Ad lorem fabulas nonumes pro, modo convenire liberavisse mel ad. Quo dicit omnes no. Audiam senserit cum cu, veri facete pro ad.</p>', '22', 'post_1723484079.jpg', 'Eam ut erant tibique suscipiantur.', 'Eam ut erant tibique suscipiantur.', '2024-08-12 17:34:39', '2024-08-17 19:22:55'),
-(7, 'An ius verear voluptatibus.', 'modo-aperirii-ntegre-vix-an', 'Sit tation tantas urbanitas eu. Munere verear elaboraret eu mel, modo aperiri integre vix an.', '<p>Sit tation tantas urbanitas eu. Munere verear elaboraret eu mel, modo aperiri integre vix an. Ut utamur gloriatur scriptorem sea, sit consulatu constituam no, reque albucius at vim. Nam noster placerat eleifend te. Aliquam omittam eam an, agam nostrum pertinacia et sit.</p>\r\n<p>Pro ut vivendo principes, quot exerci tractatos at qui, inani minimum ex vix. Vitae epicurei vulputate usu no, usu ex modus ceteros recteque. Qui id amet nisl ullum, ei voluptaria incorrupte pri. Ad diceret accusamus duo.</p>\r\n<p>&nbsp;</p>\r\n<p>Graecis maiorum volutpat ei qui. Duo accusam senserit id, ea mel fabulas percipit, discere definitionem an mea. Mei iisque salutatus assueverit ut, nam aliquam ocurreret id. Eam sale homero alienum et, qui unum prima vivendo ea. Unum oportere est ea.</p>\r\n<p>Brute habemus vim ex. Eros meis argumentum in sit, his dolor reprimique id. Ut pro iriure fastidii, ex nam enim aliquip consetetur. Eos probo fabulas petentium ea.</p>\r\n<p>Has ponderum postulant at, viris qualisque philosophia qui ea, causae percipit iudicabit pri ut. Justo blandit albucius pro ut, populo nominati quo no. Qui id alterum dolorem interesset, nam ne quod essent. Doming option recteque mei ne, admodum voluptaria ex eos.</p>', '2', 'post_1723484443.jpg', 'An ius verear voluptatibus.', 'An ius verear voluptatibus.', '2024-08-12 17:40:43', '2024-08-13 22:47:46');
+(7, 'An ius verear voluptatibus.', 'modo-aperirii-ntegre-vix-an', 'Sit tation tantas urbanitas eu. Munere verear elaboraret eu mel, modo aperiri integre vix an.', '<p>Sit tation tantas urbanitas eu. Munere verear elaboraret eu mel, modo aperiri integre vix an. Ut utamur gloriatur scriptorem sea, sit consulatu constituam no, reque albucius at vim. Nam noster placerat eleifend te. Aliquam omittam eam an, agam nostrum pertinacia et sit.</p>\r\n<p>Pro ut vivendo principes, quot exerci tractatos at qui, inani minimum ex vix. Vitae epicurei vulputate usu no, usu ex modus ceteros recteque. Qui id amet nisl ullum, ei voluptaria incorrupte pri. Ad diceret accusamus duo.</p>\r\n<p>&nbsp;</p>\r\n<p>Graecis maiorum volutpat ei qui. Duo accusam senserit id, ea mel fabulas percipit, discere definitionem an mea. Mei iisque salutatus assueverit ut, nam aliquam ocurreret id. Eam sale homero alienum et, qui unum prima vivendo ea. Unum oportere est ea.</p>\r\n<p>Brute habemus vim ex. Eros meis argumentum in sit, his dolor reprimique id. Ut pro iriure fastidii, ex nam enim aliquip consetetur. Eos probo fabulas petentium ea.</p>\r\n<p>Has ponderum postulant at, viris qualisque philosophia qui ea, causae percipit iudicabit pri ut. Justo blandit albucius pro ut, populo nominati quo no. Qui id alterum dolorem interesset, nam ne quod essent. Doming option recteque mei ne, admodum voluptaria ex eos.</p>', '3', 'post_1723484443.jpg', 'An ius verear voluptatibus.', 'An ius verear voluptatibus.', '2024-08-12 17:40:43', '2024-09-02 13:41:47');
 
 -- --------------------------------------------------------
 
@@ -881,7 +960,9 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('J0rjzwmMSMJeZFbkGjR7B8Lz47hWERPON8Z0KfLc', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibGhGcFZWNEZsRktBY2ZvUnBhMUZOZ1M4WFNBTllkbXl5OGZkTktNSiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9jb21wYW55LWxvY2F0aW9uL3ZpZXciO31zOjU0OiJsb2dpbl9jb21wYW55XzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1724805349);
+('5ziXknxc2Fh6c5APiHZedaWEdtZuYrKTSSUEzqv7', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiOXZua2wxMHY1MUVQTHI2QnpvWHZ3SlFYUm5QQjJwcDJLckFiTmRvNiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jb21wYW55L2pvYnMiO31zOjU0OiJsb2dpbl9jb21wYW55XzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1725980594),
+('KoDjDBcU1acQtwJpxMZHfRlfDAoZIIwe3GfFEDf9', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiampJREdBcVBYY2FxdWl0R0tzbjc5MFp5Y1JlNXdCOUtuNjN3aWk1MSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jb21wYW55L2Rhc2hib2FyZCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTQ6ImxvZ2luX2NvbXBhbnlfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1725980871),
+('ODy7QoVhSWmQ9w9vzaacMY8Tyz8aeuzX9QNz8REj', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoibkpTRkFIdXJuNGtDNjI2Q1UzeDJpblYzSERDd3B3M0V0cDNyMkVNQyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jYW5kaWRhdGUvZGFzaGJvYXJkIjt9czo1NjoibG9naW5fY2FuZGlkYXRlXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1726081937);
 
 -- --------------------------------------------------------
 
